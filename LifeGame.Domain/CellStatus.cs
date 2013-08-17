@@ -14,7 +14,7 @@ namespace LifeGame.Domain
         /// <summary>
         /// The cell is life
         /// </summary>
-        Life,
+        Alive,
 
         /// <summary>
         /// The cell is dead

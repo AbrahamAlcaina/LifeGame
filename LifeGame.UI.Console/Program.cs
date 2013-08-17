@@ -1,24 +1,30 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Grid.cs" company="Abraham Alcaina">
+// <copyright file="Program.cs" company="Abraham Alcaina">
 //   AAA Code
 // </copyright>
+// <summary>
+//   The program.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace LifeGame.Domain
+namespace LifeGame.UI.Console
 {
-    using System.Collections.Generic;
-
     /// <summary>
-    /// The grid.
+    /// The program.
     /// </summary>
-    public class Grid
+    internal class Program
     {
-        #region Properties
+        #region Methods
 
         /// <summary>
-        /// Gets or sets the cells.
+        /// The main.
         /// </summary>
-        internal IEnumerable<Cell> Cells { get; set; }
+        /// <param name="args">
+        /// The args.
+        /// </param>
+        private static void Main(string[] args)
+        {
+        }
 
         #endregion
     }

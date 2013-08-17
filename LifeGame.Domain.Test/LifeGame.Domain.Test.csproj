@@ -48,11 +48,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UniverseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LifeGame.Domain\LifeGame.Domain.csproj">
+      <Project>{0B0F2DAF-83A3-4F2F-9937-283D9C8F17DF}</Project>
+      <Name>LifeGame.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

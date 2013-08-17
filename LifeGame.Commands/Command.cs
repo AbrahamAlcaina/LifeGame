@@ -1,33 +1,40 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BaseCommand.cs" company="Abraham Alcaina">
+// <copyright file="Command.cs" company="Abraham Alcaina">
 //   AAA Code
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace LifeGame.Commands
 {
     using System;
 
     /// <summary>
-    /// The base command.
+    ///     The base command.
     /// </summary>
     [Serializable]
     public class Command : ICommand
     {
-        /// <summary>
-        /// Gets the id.
-        /// </summary>
-        public Guid Id { get; private set; }
+        #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BaseCommand"/> class.
+        /// Initializes a new instance of the <see cref="Command"/> class.
         /// </summary>
         /// <param name="id">
         /// The id.
         /// </param>
-        public BaseCommand(Guid id)
+        public Command(Guid id)
         {
             this.Id = id;
         }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        ///     Gets the id.
+        /// </summary>
+        public Guid Id { get; private set; }
+
+        #endregion
     }
 }
