@@ -17,17 +17,16 @@ namespace LifeGame.Domain.Test
     public class UniverseTest
     {
         [Fact]
-        public void StartGrid()
+        public void DefaultConstructorCreatesOneMillionOfCells()
         {
-            // arrange
-            var sut = new Universe();
-            const int NumberOfLifeCells = 20;
-
+            // arrange 
+            const int NumberOfCells = 1000 * 1000;
+            var strategy = new SquareGameboard();
             // act
-            sut.SetUp(NumberOfLifeCells);
+            var sut = new Universe(strategy, NumberOfCells);
 
             // assert
-            Assert.Equal(NumberOfLifeCells, sut.NumberOfLifeCell);
+            Assert.Equal(NumberOfCells, sut.NumberOfLifeCell);
         }
     }
 }

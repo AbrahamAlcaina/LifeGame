@@ -10,7 +10,7 @@ namespace LifeGame.Domain
     /// <summary>
     ///     The cell.
     /// </summary>
-    internal class Cell
+    public class Cell
     {
         #region Constructors and Destructors
 
@@ -56,6 +56,7 @@ namespace LifeGame.Domain
         public Cell AddNeighbor(Cell neighbor)
         {
             this.Neighbors.Add(neighbor);
+            return this;
         }
 
         #endregion

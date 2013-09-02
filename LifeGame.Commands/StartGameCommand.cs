@@ -20,10 +20,13 @@ namespace LifeGame.Commands
         /// <param name="id">
         /// The id.
         /// </param>
-        public StartGameCommand(Guid id)
+        /// <param name="numberOfCells"></param>
+        public StartGameCommand(Guid id, int numberOfCells)
             : base(id)
         {
-            
+            this.NumberOfCells = numberOfCells;
         }
+
+        public int NumberOfCells { get; set; }
     }
 }
