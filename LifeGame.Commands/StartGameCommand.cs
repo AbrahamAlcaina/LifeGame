@@ -28,5 +28,6 @@ namespace LifeGame.Commands
         }
 
         public int NumberOfCells { get; set; }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace LifeGame.CommandHandlers
 {
     using LifeGame.Commands;
+    using LifeGame.Domain;
     using LifeGame.EventStore;
 
     internal class StartGameCommandHandler : ICommandHandler<StartGameCommand>

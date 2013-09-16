@@ -20,5 +20,7 @@ namespace LifeGame.Commands
         /// Gets the id.
         /// </summary>
         Guid Id { get; }
+
+        
     }
 }

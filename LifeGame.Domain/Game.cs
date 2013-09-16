@@ -2,8 +2,6 @@
 {
     using System;
 
-    using AutoMapper;
-
     using LifeGame.Domain.Mementos;
     using LifeGame.EventStore;
     using LifeGame.EventStore.Aggregate;
@@ -14,6 +12,7 @@
         public Game(int numberOfCells)
         {
             this.NumberOfCells = numberOfCells;
+
         }
 
         public IMemento CreateMemento()
@@ -24,7 +23,8 @@
         public void SetMemento(IMemento memento)
         {
             var gameMemento = memento as GameMemento;
-            gameMemento = Mapper.Map<GameMemento>(this);
+            this.Id = gameMemento.Id;
+            this.NumberOfCells = gameMemento.NumberOfCells;
         }
 
         private int NumberOfCells { get; set; }
