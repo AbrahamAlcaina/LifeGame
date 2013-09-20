@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace LifeGame.CommandHandlers
 {
-    interface ICommandHandler<TCommand> where TCommand: class
+    public interface ICommandHandler<in TCommand> where TCommand : class
     {
-        bool Execute(TCommand command);
+        void Execute(TCommand command);
     }
 }

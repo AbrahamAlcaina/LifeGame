@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.20623.1 VSUPREVIEW
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.Domain", "LifeGame.Domain\LifeGame.Domain.csproj", "{0B0F2DAF-83A3-4F2F-9937-283D9C8F17DF}"
 EndProject
-Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "LifeGame.Models", "LifeGame.Models\LifeGame.Models.modelproj", "{C0E7FF8B-F0F1-4E40-81FE-BCB400E37272}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.Domain.Test", "LifeGame.Domain.Test\LifeGame.Domain.Test.csproj", "{DF8470F5-0A54-49F5-8B6B-25D2B081B71F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.Commands", "LifeGame.Commands\LifeGame.Commands.csproj", "{CE3A4643-83CE-445C-9B13-1B65225A46E3}"
@@ -17,11 +15,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.Events", "LifeGame
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.EventHandlers", "LifeGame.EventHandlers\LifeGame.EventHandlers.csproj", "{4C57E3BE-AB6C-4863-9236-A092BF60535B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{0F725EA8-9B13-453E-B411-6B09CA98EA6A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.UI.Console", "LifeGame.UI.Console\LifeGame.UI.Console.csproj", "{6E0B3151-9CF2-430A-9C0C-A5685144A5AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.Bus", "LifeGame.Bus\LifeGame.Bus.csproj", "{C976F6C0-4306-4C11-9940-A28AB4F9A932}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.EventStore", "LifeGame.EventStore\LifeGame.EventStore.csproj", "{7F1ABF3B-2EF9-47E1-B8F3-7B7E5F39ABEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.Bus", "LifeGame.Bus\LifeGame.Bus.csproj", "{C976F6C0-4306-4C11-9940-A28AB4F9A932}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{5C75F90B-81D5-4080-A877-BA21E0EC7C15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "View", "View", "{D64EA045-47DD-473A-BDED-10613AED34C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{331B90FA-DE95-4A3B-975D-D0B79843C414}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.Configuration", "LifeGame.Configuration\LifeGame.Configuration.csproj", "{812CB7BF-3E6F-4986-A5D5-5453ED6936A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.EventStore.Implementation", "LifeGame.EventStore.Implementation\LifeGame.EventStore.Implementation.csproj", "{96F3B0E7-8FD7-49E9-A77C-BBD9581ADB52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +44,6 @@ Global
 		{0B0F2DAF-83A3-4F2F-9937-283D9C8F17DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B0F2DAF-83A3-4F2F-9937-283D9C8F17DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B0F2DAF-83A3-4F2F-9937-283D9C8F17DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C0E7FF8B-F0F1-4E40-81FE-BCB400E37272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0E7FF8B-F0F1-4E40-81FE-BCB400E37272}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0E7FF8B-F0F1-4E40-81FE-BCB400E37272}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0E7FF8B-F0F1-4E40-81FE-BCB400E37272}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DF8470F5-0A54-49F5-8B6B-25D2B081B71F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DF8470F5-0A54-49F5-8B6B-25D2B081B71F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF8470F5-0A54-49F5-8B6B-25D2B081B71F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,19 +64,32 @@ Global
 		{4C57E3BE-AB6C-4863-9236-A092BF60535B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C57E3BE-AB6C-4863-9236-A092BF60535B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C57E3BE-AB6C-4863-9236-A092BF60535B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F1ABF3B-2EF9-47E1-B8F3-7B7E5F39ABEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F1ABF3B-2EF9-47E1-B8F3-7B7E5F39ABEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F1ABF3B-2EF9-47E1-B8F3-7B7E5F39ABEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F1ABF3B-2EF9-47E1-B8F3-7B7E5F39ABEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E0B3151-9CF2-430A-9C0C-A5685144A5AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E0B3151-9CF2-430A-9C0C-A5685144A5AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E0B3151-9CF2-430A-9C0C-A5685144A5AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E0B3151-9CF2-430A-9C0C-A5685144A5AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C976F6C0-4306-4C11-9940-A28AB4F9A932}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C976F6C0-4306-4C11-9940-A28AB4F9A932}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C976F6C0-4306-4C11-9940-A28AB4F9A932}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C976F6C0-4306-4C11-9940-A28AB4F9A932}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F1ABF3B-2EF9-47E1-B8F3-7B7E5F39ABEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F1ABF3B-2EF9-47E1-B8F3-7B7E5F39ABEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F1ABF3B-2EF9-47E1-B8F3-7B7E5F39ABEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F1ABF3B-2EF9-47E1-B8F3-7B7E5F39ABEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{812CB7BF-3E6F-4986-A5D5-5453ED6936A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{812CB7BF-3E6F-4986-A5D5-5453ED6936A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{812CB7BF-3E6F-4986-A5D5-5453ED6936A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{812CB7BF-3E6F-4986-A5D5-5453ED6936A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96F3B0E7-8FD7-49E9-A77C-BBD9581ADB52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96F3B0E7-8FD7-49E9-A77C-BBD9581ADB52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96F3B0E7-8FD7-49E9-A77C-BBD9581ADB52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96F3B0E7-8FD7-49E9-A77C-BBD9581ADB52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{DF8470F5-0A54-49F5-8B6B-25D2B081B71F} = {0F725EA8-9B13-453E-B411-6B09CA98EA6A}
+		{DF8470F5-0A54-49F5-8B6B-25D2B081B71F} = {5C75F90B-81D5-4080-A877-BA21E0EC7C15}
+		{6E0B3151-9CF2-430A-9C0C-A5685144A5AF} = {D64EA045-47DD-473A-BDED-10613AED34C6}
 	EndGlobalSection
 EndGlobal

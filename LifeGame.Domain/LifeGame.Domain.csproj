@@ -46,6 +46,11 @@
   <ItemGroup>
     <Compile Include="Cell.cs" />
     <Compile Include="CellStatus.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="Mementos\GameMemento.cs" />
+    <Compile Include="IGameboardConstructorStrategy.cs" />
+    <Compile Include="SquareGameboard.cs" />
+    <Compile Include="Universe.cs" />
     <Compile Include="Grid.cs" />
     <Compile Include="Mementos\CellMemento.cs" />
     <Compile Include="Mementos\UniverseMemento.cs" />
@@ -54,6 +59,12 @@
   <ItemGroup>
     <ProjectReference Include="..\LifeGame.EventStore\LifeGame.EventStore.csproj">
       <Project>{7f1abf3b-2ef9-47e1-b8f3-7b7e5f39abea}</Project>
+      <Name>LifeGame.EventStore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LifeGame.EventStore\LifeGame.EventStore.csproj">
+      <Project>{7F1ABF3B-2EF9-47E1-B8F3-7B7E5F39ABEA}</Project>
       <Name>LifeGame.EventStore</Name>
     </ProjectReference>
   </ItemGroup>
