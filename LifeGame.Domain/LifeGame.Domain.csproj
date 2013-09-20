@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0B0F2DAF-83A3-4F2F-9937-283D9C8F17DF}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LifeGame.Domain</RootNamespace>
     <AssemblyName>LifeGame.Domain</AssemblyName>
@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,7 +47,15 @@
     <Compile Include="Cell.cs" />
     <Compile Include="CellStatus.cs" />
     <Compile Include="Grid.cs" />
+    <Compile Include="Mementos\CellMemento.cs" />
+    <Compile Include="Mementos\UniverseMemento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LifeGame.EventStore\LifeGame.EventStore.csproj">
+      <Project>{7f1abf3b-2ef9-47e1-b8f3-7b7e5f39abea}</Project>
+      <Name>LifeGame.EventStore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

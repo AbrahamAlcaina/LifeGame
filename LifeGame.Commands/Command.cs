@@ -25,7 +25,7 @@ namespace LifeGame.Commands
         /// <param name="id">
         /// The id.
         /// </param>
-        public BaseCommand(Guid id)
+        public Command(Guid id)
         {
             this.Id = id;
         }
