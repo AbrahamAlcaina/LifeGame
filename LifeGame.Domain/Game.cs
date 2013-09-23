@@ -15,6 +15,10 @@
 
         }
 
+        public Game()
+        {
+        }
+
         public IMemento CreateMemento()
         {
             return new GameMemento(this.Id, this.Version, this.NumberOfCells);

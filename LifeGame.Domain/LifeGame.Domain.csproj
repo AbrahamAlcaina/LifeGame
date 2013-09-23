@@ -51,7 +51,6 @@
     <Compile Include="IGameboardConstructorStrategy.cs" />
     <Compile Include="SquareGameboard.cs" />
     <Compile Include="Universe.cs" />
-    <Compile Include="Grid.cs" />
     <Compile Include="Mementos\CellMemento.cs" />
     <Compile Include="Mementos\UniverseMemento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.20623.1 VSUPREVIEW
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.Domain", "LifeGame.Domain\LifeGame.Domain.csproj", "{0B0F2DAF-83A3-4F2F-9937-283D9C8F17DF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.Domain.Test", "LifeGame.Domain.Test\LifeGame.Domain.Test.csproj", "{DF8470F5-0A54-49F5-8B6B-25D2B081B71F}"
@@ -33,6 +31,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.Configuration", "LifeGame.Configuration\LifeGame.Configuration.csproj", "{812CB7BF-3E6F-4986-A5D5-5453ED6936A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.EventStore.Implementation", "LifeGame.EventStore.Implementation\LifeGame.EventStore.Implementation.csproj", "{96F3B0E7-8FD7-49E9-A77C-BBD9581ADB52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.EventStore.Implementation.Test", "LifeGame.EventStore.Implementation.Test\LifeGame.EventStore.Implementation.Test.csproj", "{399C5238-4816-4AC4-834D-A1F554C8A233}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -84,6 +84,10 @@ Global
 		{96F3B0E7-8FD7-49E9-A77C-BBD9581ADB52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96F3B0E7-8FD7-49E9-A77C-BBD9581ADB52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96F3B0E7-8FD7-49E9-A77C-BBD9581ADB52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{399C5238-4816-4AC4-834D-A1F554C8A233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{399C5238-4816-4AC4-834D-A1F554C8A233}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{399C5238-4816-4AC4-834D-A1F554C8A233}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{399C5238-4816-4AC4-834D-A1F554C8A233}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

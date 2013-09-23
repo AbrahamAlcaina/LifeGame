@@ -14,7 +14,7 @@ namespace LifeGame.Commands
     /// <summary>
     /// The Command interface.
     /// </summary>
-    internal interface ICommand
+    public interface ICommand
     {
         /// <summary>
         /// Gets the id.

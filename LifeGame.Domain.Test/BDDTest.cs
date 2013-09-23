@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Xml.Serialization;
-using NUnit.Framework;
+
 
 namespace Edument.CQRS
 {
@@ -18,7 +18,7 @@ namespace Edument.CQRS
     /// <typeparam name="TAggregate"></typeparam>
     public class BDDTest<TCommandHandler, TAggregate>
         where TCommandHandler : new()
-        where TAggregate : Aggregate, new()
+        where TAggregate : AggregateRoot, new()
     {
         private TCommandHandler sut;
 

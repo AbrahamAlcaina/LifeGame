@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DF8470F5-0A54-49F5-8B6B-25D2B081B71F}</ProjectGuid>
+    <ProjectGuid>{812CB7BF-3E6F-4986-A5D5-5453ED6936A7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LifeGame.Domain.Test</RootNamespace>
-    <AssemblyName>LifeGame.Domain.Test</AssemblyName>
+    <RootNamespace>LifeGame.Configuration</RootNamespace>
+    <AssemblyName>LifeGame.Configuration</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -29,7 +31,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SimpleInjector">
+      <HintPath>..\packages\SimpleInjector.2.3.5\lib\net40-client\SimpleInjector.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -37,21 +45,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TechTalk.SpecFlow">
-      <HintPath>..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit, Version=1.9.2.1705, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.extensions, Version=1.9.2.1705, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\xunit.extensions.1.9.2\lib\net20\xunit.extensions.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameTest.cs" />
-    <Compile Include="UniverseTest.cs" />
+    <Compile Include="ApplicationRegistry.cs" />
+    <Compile Include="DomainRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,9 +56,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LifeGame.Domain\LifeGame.Domain.csproj">
-      <Project>{0B0F2DAF-83A3-4F2F-9937-283D9C8F17DF}</Project>
-      <Name>LifeGame.Domain</Name>
+    <ProjectReference Include="..\LifeGame.Bus\LifeGame.Bus.csproj">
+      <Project>{C976F6C0-4306-4C11-9940-A28AB4F9A932}</Project>
+      <Name>LifeGame.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeGame.EventStore.Implementation\LifeGame.EventStore.Implementation.csproj">
+      <Project>{96F3B0E7-8FD7-49E9-A77C-BBD9581ADB52}</Project>
+      <Name>LifeGame.EventStore.Implementation</Name>
     </ProjectReference>
     <ProjectReference Include="..\LifeGame.EventStore\LifeGame.EventStore.csproj">
       <Project>{7F1ABF3B-2EF9-47E1-B8F3-7B7E5F39ABEA}</Project>

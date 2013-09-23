@@ -2,8 +2,6 @@
 {
     using System;
 
-    using AutoMapper;
-
     using LifeGame.Domain.Mementos;
 
     using Xunit;
