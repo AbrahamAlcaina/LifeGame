@@ -2,11 +2,14 @@
 {
     using System.ComponentModel;
     using System.Linq;
+    using System.Runtime.Remoting.Messaging;
 
     using LifeGame.EventStore.Storage;
 
     using System;
     using System.Collections.Generic;
+
+    using LifeGame.EventStore.Storage.Memento;
 
     using NEventStore;
 
@@ -15,12 +18,18 @@
     {
         public ISnapShot GetSnapShot(Guid entityId)
         {
-            throw new NotImplementedException();
+            var nSnapShot = this.EventStorage.Advanced.GetSnapshot(entityId, int.MaxValue);
+            return new SnapShot(
+                nSnapShot.StreamId,
+                nSnapShot.StreamRevision,
+                (IMemento)nSnapShot.Payload);
         }
 
         public void SaveShapShot(IEventProvider<TDomainEvent> entity)
         {
-            throw new NotImplementedException();
+            var memento = ((IOrginator)entity).CreateMemento();
+            var snapShot = new Snapshot(entity.Id, entity.Version, memento);
+            this.EventStorage.Advanced.AddSnapshot(snapShot);
         }
 
         public void BeginTransaction()
