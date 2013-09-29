@@ -1,8 +1,6 @@
 ﻿namespace LifeGame.EventStore.Implementation
 {
-    using System.ComponentModel;
     using System.Linq;
-    using System.Runtime.Remoting.Messaging;
     using System.Transactions;
 
     using LifeGame.EventStore.Storage;
@@ -14,7 +12,7 @@
 
     using NEventStore;
 
-    public class DomainEventStorage<TDomainEvent> : IDomainEventStorage<TDomainEvent>, IEnlistmentNotification
+    public class DomainEventStorage<TDomainEvent> : IDomainEventStorage<TDomainEvent>
         where TDomainEvent : class, IDomainEvent
     {
         public ISnapShot GetSnapShot(Guid entityId)
@@ -118,26 +116,6 @@
         {
             if (this.EventStorage == null) throw new EventStorageNotInitializedException();
             return this.EventStorage.OpenStream(id, 0, int.MaxValue);
-        }
-
-        public void Prepare(PreparingEnlistment preparingEnlistment)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Commit(Enlistment enlistment)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Rollback(Enlistment enlistment)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void InDoubt(Enlistment enlistment)
-        {
-            throw new NotImplementedException();
         }
     }
 }
