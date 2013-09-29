@@ -34,6 +34,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.EventStore.Impleme
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.EventStore.Implementation.Test", "LifeGame.EventStore.Implementation.Test\LifeGame.EventStore.Implementation.Test.csproj", "{399C5238-4816-4AC4-834D-A1F554C8A233}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.Bus.Implementation", "LifeGame.Bus.Implementation\LifeGame.Bus.Implementation.csproj", "{B375FB61-3C75-49B1-A413-B61F02622501}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeGame.Bus.Implementation.Test", "LifeGame.Bus.Implementation.Test\LifeGame.Bus.Implementation.Test.csproj", "{097DA2C5-9B0E-4C98-9CCA-69DBD8D66D66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +92,14 @@ Global
 		{399C5238-4816-4AC4-834D-A1F554C8A233}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{399C5238-4816-4AC4-834D-A1F554C8A233}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{399C5238-4816-4AC4-834D-A1F554C8A233}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B375FB61-3C75-49B1-A413-B61F02622501}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B375FB61-3C75-49B1-A413-B61F02622501}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B375FB61-3C75-49B1-A413-B61F02622501}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B375FB61-3C75-49B1-A413-B61F02622501}.Release|Any CPU.Build.0 = Release|Any CPU
+		{097DA2C5-9B0E-4C98-9CCA-69DBD8D66D66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{097DA2C5-9B0E-4C98-9CCA-69DBD8D66D66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{097DA2C5-9B0E-4C98-9CCA-69DBD8D66D66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{097DA2C5-9B0E-4C98-9CCA-69DBD8D66D66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +107,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DF8470F5-0A54-49F5-8B6B-25D2B081B71F} = {5C75F90B-81D5-4080-A877-BA21E0EC7C15}
 		{399C5238-4816-4AC4-834D-A1F554C8A233} = {5C75F90B-81D5-4080-A877-BA21E0EC7C15}
+		{097DA2C5-9B0E-4C98-9CCA-69DBD8D66D66} = {5C75F90B-81D5-4080-A877-BA21E0EC7C15}
 		{6E0B3151-9CF2-430A-9C0C-A5685144A5AF} = {D64EA045-47DD-473A-BDED-10613AED34C6}
 	EndGlobalSection
 EndGlobal
