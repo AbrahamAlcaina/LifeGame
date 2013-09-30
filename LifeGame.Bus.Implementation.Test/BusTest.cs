@@ -10,30 +10,6 @@ namespace LifeGame.Bus.Implementation.Test
     public class BusTest
     {
         [Fact]
-        public void CommitTest()
-        {
-            throw new NotImplementedException();
-        }
-
-        [Fact]
-        public void RollbackTest()
-        {
-            throw new NotImplementedException();
-        }
-
-        [Fact]
-        public void PublishTest()
-        {
-            throw new NotImplementedException();
-        }
-
-        [Fact]
-        public void PublishTest1()
-        {
-            throw new NotImplementedException();
-        }
-
-        [Fact]
         public void IntegratedTest()
         {
             // arrange 

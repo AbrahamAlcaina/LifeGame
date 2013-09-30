@@ -12,12 +12,14 @@ namespace LifeGame.Bus.Implementation
     {
         public IBus GetBus()
         {
-            return 
+            return
                 Configure.With()
                 .DefaultBuilder()
+                .DoNotCreateQueues()
                 .UseNHibernateSubscriptionPersister()
                 .UseNHibernateSagaPersister()
                 .UseNHibernateTimeoutPersister()
+                .InMemoryFaultManagement()
                 .CreateBus()
                 .Start();
         }
