@@ -80,10 +80,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LifeGame.Bus.Implementation\LifeGame.Bus.Implementation.csproj">
-      <Project>{B375FB61-3C75-49B1-A413-B61F02622501}</Project>
-      <Name>LifeGame.Bus.Implementation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LifeGame.Bus\LifeGame.Bus.csproj">
       <Project>{C976F6C0-4306-4C11-9940-A28AB4F9A932}</Project>
       <Name>LifeGame.Bus</Name>

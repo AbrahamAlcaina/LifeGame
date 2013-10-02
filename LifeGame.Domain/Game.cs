@@ -9,10 +9,14 @@
 
     public class Game : BaseAggregateRoot<IDomainEvent>, IOrginator
     {
+        public static Game CreateGame(int numberOfCells)
+        {
+            return new Game(numberOfCells);
+        }
+
         public Game(int numberOfCells)
         {
             this.NumberOfCells = numberOfCells;
-
         }
 
         public Game()
@@ -28,9 +32,10 @@
         {
             var gameMemento = memento as GameMemento;
             this.Id = gameMemento.Id;
-            this.NumberOfCells = gameMemento.NumberOfCells;
+            this.Version = gameMemento.Version;
+            this.NumberOfCells = gameMemento.NumberOfCells;            
         }
 
-        private int NumberOfCells { get; set; }
+        internal int NumberOfCells { get; set; }
     }
 }

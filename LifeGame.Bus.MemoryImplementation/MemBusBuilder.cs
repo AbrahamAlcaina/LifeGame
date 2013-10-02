@@ -1,5 +1,8 @@
 ﻿using LifeGame.CommandHandlers;
 using MemBus;
+using MemBus.Configurators;
+using MemBus.Subscribing;
+using SimpleInjector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +13,17 @@ namespace LifeGame.Bus.MemoryImplementation
 {
     public class MemBusBuilder: IBusBuilder
     {
-
+        public MemBusBuilder(Container container)
+        {
+            this.Container = container;
+        }
         public MemBus.IBus GetBus()
         {
             return BusSetup.StartWith<MemBus.Configurators.AsyncConfiguration>()
-                 .Apply<FlexibleSubscribeAdapter>(a =>
-                 {
-                     a.ByInterface(typeof(ICommandHandler<>));                     
-                 })
-                 .Apply<
+                 .Apply<IoCSupport>(s => s.SetAdapter(new BusIoCAdapter(this.Container)).SetHandlerInterface(typeof(ICommandHandler<>)))
                  .Construct();
         }
 
-        public MemBusBuilder() { }
+        internal Container Container { get; set; }
     }
 }

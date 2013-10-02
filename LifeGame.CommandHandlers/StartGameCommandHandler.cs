@@ -25,8 +25,7 @@
 
         public void Execute(StartGameCommand command)
         {
-            var game = new Game(command.NumberOfCells);
-            this.repository.Add(game);
+            var game = this.repository.GetById<Game>(command.IdGame);
         }
 
         #endregion

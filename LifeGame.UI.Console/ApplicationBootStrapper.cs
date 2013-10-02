@@ -16,7 +16,7 @@ namespace LifeGame.UI.Console
             return container;
         }
 
-        public static Container BootStrap(Container container)
+        public static Container BootStrap()
         {
             return new ApplicationBootStrapper().BootStrapTheApplication();
         }

@@ -7,6 +7,7 @@ using LifeGame.Bus.MemoryImplementation;
 using Xunit;
 using Moq;
 using LifeGame.Commands;
+using SimpleInjector;
 namespace LifeGame.Bus.MemoryImplementation.Test
 {
     public class BusTest
@@ -15,7 +16,8 @@ namespace LifeGame.Bus.MemoryImplementation.Test
         public void BusConstructor()
         {
             // arrange
-            var builder = new MemBusBuilder();
+            var container = new Container();
+            var builder = new MemBusBuilder(container);
 
             // act
             var sut = new Bus(builder);

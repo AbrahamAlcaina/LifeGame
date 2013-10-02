@@ -14,20 +14,13 @@ namespace LifeGame.Commands
     [Serializable]
     public class StartGameCommand : Command
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="StartGameCommand"/> class.
-        /// </summary>
-        /// <param name="id">
-        /// The id.
-        /// </param>
-        /// <param name="numberOfCells"></param>
-        public StartGameCommand(Guid id, int numberOfCells)
+        public StartGameCommand(Guid id, Guid idGame)
             : base(id)
         {
-            this.NumberOfCells = numberOfCells;
+            this.IdGame = idGame;
         }
 
-        public int NumberOfCells { get; set; }
+        public Guid IdGame { get; set; }
 
     }
 }

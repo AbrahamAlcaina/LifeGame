@@ -26,7 +26,7 @@ namespace LifeGame.UI.Console
         /// </param>
         private static void Main(string[] args)
         {
-            container = ApplicationBootStrapper.BootStrap();
+            var container = ApplicationBootStrapper.BootStrap();
         }
 
         #endregion

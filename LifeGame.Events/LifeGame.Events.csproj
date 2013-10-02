@@ -39,7 +39,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DomainEvent.cs" />
+    <Compile Include="GameCreated.cs" />
+    <Compile Include="GameStarted.cs" />
+    <Compile Include="GameStopped.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LifeGame.EventStore\LifeGame.EventStore.csproj">
+      <Project>{7f1abf3b-2ef9-47e1-b8f3-7b7e5f39abea}</Project>
+      <Name>LifeGame.EventStore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
