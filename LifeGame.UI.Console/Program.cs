@@ -9,7 +9,11 @@
 
 namespace LifeGame.UI.Console
 {
+    using LifeGame.Bus;
+    using LifeGame.Commands;
+
     using SimpleInjector;
+    using System;
 
     /// <summary>
     /// The program.
@@ -26,7 +30,13 @@ namespace LifeGame.UI.Console
         /// </param>
         private static void Main(string[] args)
         {
-            var container = ApplicationBootStrapper.BootStrap();
+            Console.WriteLine("Start");
+            container = ApplicationBootStrapper.BootStrap();
+            var bus = GetInstance<IBus>();
+            var startCommand = new CreateGameCommand(Guid.NewGuid(), 1000);
+            bus.Publish(startCommand);
+
+            Console.ReadLine();
         }
 
         #endregion

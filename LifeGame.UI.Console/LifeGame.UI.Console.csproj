@@ -37,6 +37,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\packages\System.Data.SQLite.1.0.88.0\lib\net45\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>..\packages\System.Data.SQLite.1.0.88.0\lib\net45\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +57,28 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LifeGame.Bus\LifeGame.Bus.csproj">
+      <Project>{C976F6C0-4306-4C11-9940-A28AB4F9A932}</Project>
+      <Name>LifeGame.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeGame.Commands\LifeGame.Commands.csproj">
+      <Project>{ce3a4643-83ce-445c-9b13-1b65225a46e3}</Project>
+      <Name>LifeGame.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeGame.Configuration\LifeGame.Configuration.csproj">
+      <Project>{812cb7bf-3e6f-4986-a5d5-5453ed6936a7}</Project>
+      <Name>LifeGame.Configuration</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="x64\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -19,7 +19,7 @@ namespace LifeGame.Bus.MemoryImplementation
         }
         public MemBus.IBus GetBus()
         {
-            return BusSetup.StartWith<MemBus.Configurators.AsyncConfiguration>()
+            return BusSetup.StartWith<AsyncConfiguration>()
                  .Apply<IoCSupport>(s => s.SetAdapter(new BusIoCAdapter(this.Container)).SetHandlerInterface(typeof(ICommandHandler<>)))
                  .Construct();
         }

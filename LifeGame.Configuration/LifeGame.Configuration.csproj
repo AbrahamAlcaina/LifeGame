@@ -56,6 +56,7 @@
     <Compile Include="ApplicationRegistry.cs" />
     <Compile Include="DomainRegistry.cs" />
     <Compile Include="BusRegistry.cs" />
+    <Compile Include="EventStoreRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +64,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LifeGame.Bus.MemoryImplementation\LifeGame.Bus.MemoryImplementation.csproj">
+      <Project>{bb758086-fc56-4f3c-829b-9b1b811f5a15}</Project>
+      <Name>LifeGame.Bus.MemoryImplementation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LifeGame.Bus\LifeGame.Bus.csproj">
       <Project>{C976F6C0-4306-4C11-9940-A28AB4F9A932}</Project>
       <Name>LifeGame.Bus</Name>
