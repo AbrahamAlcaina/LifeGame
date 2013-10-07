@@ -1,8 +1,7 @@
 ﻿<Controls:MetroWindow x:Name="MainWindow1" x:Class="LifeGame.UI.View.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Conway's Game of Life" Height="350" Width="525" ShowTitleBar="false">
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" Height="350" Width="500" ShowTitleBar="false" Icon="150.png">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -10,46 +9,58 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
                 <ResourceDictionary>
                     <ResourceDictionary.MergedDictionaries>
                         <ResourceDictionary Source="/Resources/Icons.xaml" />
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <Controls:MetroWindow.WindowCommands>
         <Controls:WindowCommands>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="150.png" />
+                <Label>Conway's Game of Life</Label>
+            </StackPanel>
             <Button>
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="20" Height="20">
                         <Rectangle.Resources>
-                            <SolidColorBrush x:Key="BlackBrush" Color="White" />
+                            <SolidColorBrush x:Key="BlackBrush" Color="Black" />
                         </Rectangle.Resources>
                         <Rectangle.Fill>
-                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cupcake}" />
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_settings}" />
                         </Rectangle.Fill>
                     </Rectangle>
-                    <TextBlock Text="settings" />
+                    <TextBlock Text=" Settings" />
                 </StackPanel>
             </Button>
         </Controls:WindowCommands>
     </Controls:MetroWindow.WindowCommands>
-    <Grid>
-        <TabControl >
-            <TabItem Header="Game"></TabItem>
-                <Controls:MetroContentControl>
-                        <Grid>
-                    <Button Style="{DynamicResource MetroCircleButtonStyle}"/>
-                </Grid>
-                
-                </Controls:MetroContentControl>
-            <TabItem Header="Stadistics">
-                <Controls:MetroContentControl>
+    <Grid Margin="0,30,0,0">
+        <TabControl>
+            <TabItem Header="Game">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Name="Left" Width="160*" />
+                        <ColumnDefinition Name="Rigth" Width="347*" />
+                    </Grid.ColumnDefinitions>
                     
-                </Controls:MetroContentControl>
+                    <StackPanel Margin="10">
+                        <Label>Options</Label>
+                        <Label>New Game</Label>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Stadistics">
+                <Grid>
+                    <Label>TO DO</Label>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>
