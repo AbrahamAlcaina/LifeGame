@@ -1,0 +1,56 @@
+﻿<Controls:MetroWindow x:Name="MainWindow1" x:Class="LifeGame.UI.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Conway's Game of Life" Height="350" Width="525" ShowTitleBar="false">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="/Resources/Icons.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Controls:MetroWindow.WindowCommands>
+        <Controls:WindowCommands>
+            <Button>
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="20" Height="20">
+                        <Rectangle.Resources>
+                            <SolidColorBrush x:Key="BlackBrush" Color="White" />
+                        </Rectangle.Resources>
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_cupcake}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Text="settings" />
+                </StackPanel>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.WindowCommands>
+    <Grid>
+        <TabControl >
+            <TabItem Header="Game"></TabItem>
+                <Controls:MetroContentControl>
+                        <Grid>
+                    <Button Style="{DynamicResource MetroCircleButtonStyle}"/>
+                </Grid>
+                
+                </Controls:MetroContentControl>
+            <TabItem Header="Stadistics">
+                <Controls:MetroContentControl>
+                    
+                </Controls:MetroContentControl>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Controls:MetroWindow>
