@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="GameStopped.cs" company="Abraham Alcaina">
+//   
+// </copyright>
+// <summary>
+//   The game stopped.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace LifeGame.Events
 {
-    class GameStopped: DomainEvent
+    /// <summary>
+    /// The game stopped.
+    /// </summary>
+    internal class GameStopped : DomainEvent
     {
     }
 }

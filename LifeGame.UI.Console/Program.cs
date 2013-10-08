@@ -1,25 +1,53 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Program.cs" company="Abraham Alcaina">
-//   AAA Code
+//   
 // </copyright>
 // <summary>
 //   The program.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace LifeGame.UI.Console
 {
+    using System;
+    using System.Diagnostics;
+
     using LifeGame.Bus;
     using LifeGame.Commands;
 
     using SimpleInjector;
-    using System;
 
     /// <summary>
-    /// The program.
+    ///     The program.
     /// </summary>
     internal class Program
     {
+        #region Static Fields
+
+        /// <summary>
+        /// The container.
+        /// </summary>
+        private static Container container;
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The get instance.
+        /// </summary>
+        /// <typeparam name="TService">
+        /// </typeparam>
+        /// <returns>
+        /// The <see cref="TService"/>.
+        /// </returns>
+        [DebuggerStepThrough]
+        public static TService GetInstance<TService>() where TService : class
+        {
+            return container.GetInstance<TService>();
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>
@@ -40,14 +68,5 @@ namespace LifeGame.UI.Console
         }
 
         #endregion
-
-        private static Container container;
-
-        [System.Diagnostics.DebuggerStepThrough]
-        public static TService GetInstance<TService>() where TService : class
-        {
-            return container.GetInstance<TService>();
-        }
-
     }
 }

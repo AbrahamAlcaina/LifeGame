@@ -1,12 +1,11 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BusRegistry.cs" company="">
+// <copyright file="BusRegistry.cs" company="Abraham Alcaina">
 //   
 // </copyright>
 // <summary>
 //   The bus registry.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace LifeGame.Bus.MemoryImplementation
 {
     using LifeGame.CommandHandlers;
@@ -15,7 +14,7 @@ namespace LifeGame.Bus.MemoryImplementation
     using SimpleInjector.Extensions;
 
     /// <summary>
-    /// The bus registry.
+    ///     The bus registry.
     /// </summary>
     public class BusRegistry
     {

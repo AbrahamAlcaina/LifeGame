@@ -2,22 +2,24 @@
 // <copyright file="CellStatus.cs" company="Abraham Alcaina">
 //   AAA Code
 // </copyright>
+// <summary>
+//   The cell status.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace LifeGame.Domain
 {
     /// <summary>
-    /// The cell status.
+    ///     The cell status.
     /// </summary>
     public enum CellStatus
     {
         /// <summary>
-        /// The cell is life
+        ///     The cell is life
         /// </summary>
-        Alive,
+        Alive, 
 
         /// <summary>
-        /// The cell is dead
+        ///     The cell is dead
         /// </summary>
         Dead
     }

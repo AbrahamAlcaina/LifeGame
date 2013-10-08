@@ -48,7 +48,7 @@
     <Compile Include="CellStatus.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Mementos\GameMemento.cs" />
-    <Compile Include="IGameboardConstructorStrategy.cs" />
+    <Compile Include="IGameBoardStrategy.cs" />
     <Compile Include="SquareGameboard.cs" />
     <Compile Include="Universe.cs" />
     <Compile Include="Mementos\CellMemento.cs" />

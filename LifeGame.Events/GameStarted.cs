@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="GameStarted.cs" company="Abraham Alcaina">
+//   
+// </copyright>
+// <summary>
+//   The game started.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace LifeGame.Events
 {
-    class GameStarted :DomainEvent 
+    /// <summary>
+    /// The game started.
+    /// </summary>
+    internal class GameStarted : DomainEvent
     {
     }
 }

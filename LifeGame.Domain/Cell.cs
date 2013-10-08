@@ -2,6 +2,9 @@
 // <copyright file="Cell.cs" company="Abraham Alcaina">
 //   AAA Code
 // </copyright>
+// <summary>
+//   The cell.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace LifeGame.Domain
 {
@@ -15,7 +18,7 @@ namespace LifeGame.Domain
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Cell"/> class.
+        ///     Initializes a new instance of the <see cref="Cell" /> class.
         /// </summary>
         public Cell()
         {

@@ -1,8 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ApplicationBootStrapper.cs" company="Abraham Alcaina">
+//   
+// </copyright>
+// <summary>
+//   The application boot strapper.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace LifeGame.UI.Console
 {
@@ -11,8 +14,30 @@ namespace LifeGame.UI.Console
 
     using SimpleInjector;
 
-    class ApplicationBootStrapper
+    /// <summary>
+    /// The application boot strapper.
+    /// </summary>
+    internal class ApplicationBootStrapper
     {
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The boot strap.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="Container"/>.
+        /// </returns>
+        public static Container BootStrap()
+        {
+            return new ApplicationBootStrapper().BootStrapTheApplication();
+        }
+
+        /// <summary>
+        /// The boot strap the application.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="Container"/>.
+        /// </returns>
         public Container BootStrapTheApplication()
         {
             var container = new Container();
@@ -23,10 +48,6 @@ namespace LifeGame.UI.Console
             return container;
         }
 
-        public static Container BootStrap()
-        {
-            return new ApplicationBootStrapper().BootStrapTheApplication();
-        }
-
+        #endregion
     }
 }

@@ -1,7 +1,31 @@
-﻿namespace LifeGame.Bus.MemoryImplementation
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IBusBuilder.cs" company="Abraham Alcaina">
+//   
+// </copyright>
+// <summary>
+//   The BusBuilder interface.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace LifeGame.Bus.MemoryImplementation
 {
+    using MemBus;
+
+    /// <summary>
+    /// The BusBuilder interface.
+    /// </summary>
     public interface IBusBuilder
     {
-        MemBus.IBus GetBus();
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The get bus.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="IBus"/>.
+        /// </returns>
+        IBus GetBus();
+
+        #endregion
     }
 }

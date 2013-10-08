@@ -1,14 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LifeGame.Events;
-using Xunit;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="DomainEventTest.cs" company="Abraham Alcaina">
+//   
+// </copyright>
+// <summary>
+//   The domain event test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
 namespace LifeGame.Events.Test
 {
+    using System;
+
+    using Xunit;
+
+    /// <summary>
+    /// The domain event test.
+    /// </summary>
     public class DomainEventTest
     {
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The domain event constructor test.
+        /// </summary>
         [Fact]
         public void DomainEventConstructorTest()
         {
@@ -19,5 +33,7 @@ namespace LifeGame.Events.Test
             Assert.NotNull(sut);
             Assert.NotEqual(default(Guid), sut.Id);
         }
+
+        #endregion
     }
 }

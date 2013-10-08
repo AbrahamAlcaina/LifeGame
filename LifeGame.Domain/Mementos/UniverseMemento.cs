@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="UniverseMemento.cs" company="Abraham Alcaina">
+//   AAA Code
+// </copyright>
+// <summary>
+//   The universe memento.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace LifeGame.Domain.Mementos
 {
-    class UniverseMemento
+    /// <summary>
+    /// The universe memento.
+    /// </summary>
+    internal class UniverseMemento
     {
     }
 }

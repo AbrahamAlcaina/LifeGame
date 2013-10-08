@@ -1,4 +1,13 @@
-﻿namespace LifeGame.EventStore.Implementation.Test
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="DomainEventStorageTest.cs" company="Abraham Alcaina">
+//   
+// </copyright>
+// <summary>
+//   The domain event storage test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace LifeGame.EventStore.Implementation.Test
 {
     using System;
     using System.Collections.Generic;
@@ -15,15 +24,21 @@
 
     using Xunit;
 
+    /// <summary>
+    /// The domain event storage test.
+    /// </summary>
     public class DomainEventStorageTest
     {
         #region Public Methods and Operators
 
+        /// <summary>
+        /// The begin transaction test.
+        /// </summary>
         [Fact]
         public void BeginTransactionTest()
         {
             // arrange 
-            var sut = this.GetFakeEventStore();
+            DomainEventStorage<IDomainEvent> sut = this.GetFakeEventStore();
 
             // act 
             sut.BeginTransaction();
@@ -32,22 +47,28 @@
             Assert.NotNull(sut.TransactionScope);
         }
 
+        /// <summary>
+        /// The begin transaction two at the same time test.
+        /// </summary>
         [Fact]
         public void BeginTransactionTwoAtTheSameTimeTest()
         {
             // arrange 
-            var sut = this.GetFakeEventStore();
+            DomainEventStorage<IDomainEvent> sut = this.GetFakeEventStore();
             sut.BeginTransaction();
 
             // assert
             Assert.Throws<AllReadyInTransactionException>(() => sut.BeginTransaction());
         }
 
+        /// <summary>
+        /// The commit test.
+        /// </summary>
         [Fact]
         public void CommitTest()
         {
             // arrange 
-            var sut = this.GetFakeEventStore();
+            DomainEventStorage<IDomainEvent> sut = this.GetFakeEventStore();
             sut.BeginTransaction();
 
             // act 
@@ -57,6 +78,9 @@
             Assert.Null(sut.TransactionScope);
         }
 
+        /// <summary>
+        /// The constructor test.
+        /// </summary>
         [Fact]
         public void ConstructorTest()
         {
@@ -70,38 +94,49 @@
             Assert.NotNull(sut);
         }
 
+        /// <summary>
+        /// The get all events test.
+        /// </summary>
         [Fact]
         public void GetAllEventsTest()
         {
             // arrange 
-            var id = Guid.NewGuid();
+            Guid id = Guid.NewGuid();
             var stream = new Mock<IEventStream>();
             stream.Setup(s => s.CommittedEvents)
                 .Returns(new List<EventMessage> { new EventMessage { Body = new EntityCreated(id, 0) } });
             stream.Setup(s => s.UncommittedEvents)
                 .Returns(new List<EventMessage> { new EventMessage { Body = new EntityChangedNameEvent("NewName") } });
-            var sut = this.GetFakeEventStore(stream);
+            DomainEventStorage<IDomainEvent> sut = this.GetFakeEventStore(stream);
 
             // act
-            var events = sut.GetAllEvents(id);
+            IEnumerable<IDomainEvent> events = sut.GetAllEvents(id);
 
             // assert
             Assert.Equal(2, events.Count());
         }
 
+        /// <summary>
+        /// The get event count since last snap shot test.
+        /// </summary>
         [Fact]
         public void GetEventCountSinceLastSnapShotTest()
         {
             // arrange
-            var id = Guid.NewGuid();
+            Guid id = Guid.NewGuid();
             var stream = new Mock<IEventStream>();
             var snapshot = new Snapshot(id, 0, new Entity(Guid.NewGuid(), 0));
             var store = new Mock<IStoreEvents>();
             var advanced = new Mock<IPersistStreams>();
-            var sut = this.FakeEventStoreForSnapshots(id, stream, snapshot, store, advanced);
+            DomainEventStorage<IDomainEvent> sut = this.FakeEventStoreForSnapshots(
+                id, 
+                stream, 
+                snapshot, 
+                store, 
+                advanced);
 
             // act 
-            var countEvents = sut.GetEventCountSinceLastSnapShot(id);
+            int countEvents = sut.GetEventCountSinceLastSnapShot(id);
 
             // assert
             Assert.Equal(1, countEvents);
@@ -109,19 +144,27 @@
             store.Verify(s => s.OpenStream(snapshot, int.MaxValue));
         }
 
+        /// <summary>
+        /// The get events since last snap shot test.
+        /// </summary>
         [Fact]
         public void GetEventsSinceLastSnapShotTest()
         {
             // arrange
-            var id = Guid.NewGuid();
+            Guid id = Guid.NewGuid();
             var stream = new Mock<IEventStream>();
             var snapshot = new Snapshot(id, 0, new Entity(Guid.NewGuid(), 0));
             var store = new Mock<IStoreEvents>();
             var advanced = new Mock<IPersistStreams>();
-            var sut = this.FakeEventStoreForSnapshots(id, stream, snapshot, store, advanced);
+            DomainEventStorage<IDomainEvent> sut = this.FakeEventStoreForSnapshots(
+                id, 
+                stream, 
+                snapshot, 
+                store, 
+                advanced);
 
             // act 
-            var events = sut.GetEventsSinceLastSnapShot(id);
+            IEnumerable<IDomainEvent> events = sut.GetEventsSinceLastSnapShot(id);
 
             // assert
             Assert.Equal(1, events.Count());
@@ -129,6 +172,9 @@
             store.Verify(s => s.OpenStream(snapshot, int.MaxValue));
         }
 
+        /// <summary>
+        /// The get snap shot test.
+        /// </summary>
         [Fact]
         public void GetSnapShotTest()
         {
@@ -142,21 +188,24 @@
                 .Returns(new Snapshot(Guid.NewGuid(), int.MaxValue, memento));
             store.Setup(s => s.Advanced).Returns(advanced.Object);
 
-            var sut = this.GetFakeEventStore(store.Object);
+            DomainEventStorage<IDomainEvent> sut = this.GetFakeEventStore(store.Object);
 
             // act 
-            var snapShot = sut.GetSnapShot(id);
+            ISnapShot snapShot = sut.GetSnapShot(id);
 
             // assert
             store.Verify(s => s.Advanced);
             advanced.Verify(a => a.GetSnapshot(id, int.MaxValue));
         }
 
+        /// <summary>
+        /// The rollback test.
+        /// </summary>
         [Fact]
         public void RollbackTest()
         {
             // arrange 
-            var sut = this.GetFakeEventStore();
+            DomainEventStorage<IDomainEvent> sut = this.GetFakeEventStore();
             sut.BeginTransaction();
 
             // act 
@@ -166,14 +215,18 @@
             Assert.Null(sut.TransactionScope);
         }
 
+        /// <summary>
+        /// The save integration db test.
+        /// </summary>
         [Fact(Skip = "Integration Test")]
         public void SaveIntegrationDBTest()
         {
             // arrange
-            var sut = this.GetEventStore();
+            DomainEventStorage<IDomainEvent> sut = this.GetEventStore();
             const string Newname = "NewName";
             var domainEntity = new Entity();
             domainEntity.ChangeName(Newname);
+
             // act
             sut.Save(domainEntity);
 
@@ -181,6 +234,9 @@
             Assert.Equal(2, sut.EventStorage.OpenStream(domainEntity.Id, 0, int.MaxValue).CommittedEvents.Count);
         }
 
+        /// <summary>
+        /// The save shap shot test.
+        /// </summary>
         [Fact]
         public void SaveShapShotTest()
         {
@@ -190,7 +246,7 @@
             var advanced = new Mock<IPersistStreams>();
 
             store.Setup(s => s.Advanced).Returns(advanced.Object);
-            var sut = this.GetFakeEventStore(store.Object);
+            DomainEventStorage<IDomainEvent> sut = this.GetFakeEventStore(store.Object);
 
             // act
             sut.SaveShapShot(entity);
@@ -200,6 +256,9 @@
             advanced.Verify(a => a.AddSnapshot(It.IsAny<Snapshot>()));
         }
 
+        /// <summary>
+        /// The save test.
+        /// </summary>
         [Fact]
         public void SaveTest()
         {
@@ -207,7 +266,7 @@
             var stream = new Mock<IEventStream>();
             var store = new Mock<IStoreEvents>();
             store.Setup(s => s.OpenStream(It.IsAny<Guid>(), 0, int.MaxValue)).Returns(stream.Object);
-            var sut = this.GetFakeEventStore(store.Object);
+            DomainEventStorage<IDomainEvent> sut = this.GetFakeEventStore(store.Object);
 
             var domainEntity = new Entity();
 
@@ -220,17 +279,23 @@
             stream.Verify(s => s.CommitChanges(It.IsAny<Guid>()));
         }
 
+        /// <summary>
+        /// The save with incorrect version test.
+        /// </summary>
         [Fact]
         public void SaveWithIncorrectVersionTest()
         {
             // arrange
-            var sut = this.GetEventStore();
-            var domainEntity = new Entity(2); //Version 2
+            DomainEventStorage<IDomainEvent> sut = this.GetEventStore();
+            var domainEntity = new Entity(2); // Version 2
 
             // act & assert
             Assert.Throws<ConcurrencyViolationException>(() => sut.Save(domainEntity));
         }
 
+        /// <summary>
+        /// The sql is installed.
+        /// </summary>
         [Fact]
         public void SqlIsInstalled()
         {
@@ -247,13 +312,34 @@
 
         #region Methods
 
+        /// <summary>
+        /// The fake event store for snapshots.
+        /// </summary>
+        /// <param name="id">
+        /// The id.
+        /// </param>
+        /// <param name="stream">
+        /// The stream.
+        /// </param>
+        /// <param name="snapshot">
+        /// The snapshot.
+        /// </param>
+        /// <param name="store">
+        /// The store.
+        /// </param>
+        /// <param name="advanced">
+        /// The advanced.
+        /// </param>
+        /// <returns>
+        /// The <see cref="DomainEventStorage"/>.
+        /// </returns>
         private DomainEventStorage<IDomainEvent> FakeEventStoreForSnapshots(
-            Guid id,
-            Mock<IEventStream> stream,
-            Snapshot snapshot,
-            Mock<IStoreEvents> store,
+            Guid id, 
+            Mock<IEventStream> stream, 
+            Snapshot snapshot, 
+            Mock<IStoreEvents> store, 
             Mock<IPersistStreams> advanced)
-        { 
+        {
             advanced.Setup(a => a.GetSnapshot(id, int.MaxValue)).Returns(snapshot);
             store.Setup(s => s.Advanced).Returns(advanced.Object);
             store.Setup(s => s.OpenStream(snapshot, int.MaxValue)).Returns(stream.Object);
@@ -263,6 +349,12 @@
             return this.GetFakeEventStore(store, stream);
         }
 
+        /// <summary>
+        /// The get event store.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="DomainEventStorage"/>.
+        /// </returns>
         private DomainEventStorage<IDomainEvent> GetEventStore()
         {
             var eventStoreBuilder = new EventStoreBuilder();
@@ -270,18 +362,42 @@
             return new DomainEventStorage<IDomainEvent>(eventStoreBuilder);
         }
 
+        /// <summary>
+        /// The get fake event store.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="DomainEventStorage"/>.
+        /// </returns>
         private DomainEventStorage<IDomainEvent> GetFakeEventStore()
         {
             var store = new Mock<IStoreEvents>();
             return GetFakeEventStore(store.Object);
         }
 
+        /// <summary>
+        /// The get fake event store.
+        /// </summary>
+        /// <param name="streamMock">
+        /// The stream mock.
+        /// </param>
+        /// <returns>
+        /// The <see cref="DomainEventStorage"/>.
+        /// </returns>
         private DomainEventStorage<IDomainEvent> GetFakeEventStore(Mock<IEventStream> streamMock)
         {
             var store = new Mock<IStoreEvents>();
             return this.GetFakeEventStore(store, streamMock);
         }
 
+        /// <summary>
+        /// The get fake event store.
+        /// </summary>
+        /// <param name="store">
+        /// The store.
+        /// </param>
+        /// <returns>
+        /// The <see cref="DomainEventStorage"/>.
+        /// </returns>
         private DomainEventStorage<IDomainEvent> GetFakeEventStore(IStoreEvents store)
         {
             var storeBuilder = new Mock<IEventStoreBuilder>();
@@ -289,8 +405,20 @@
             return new DomainEventStorage<IDomainEvent>(storeBuilder.Object);
         }
 
+        /// <summary>
+        /// The get fake event store.
+        /// </summary>
+        /// <param name="store">
+        /// The store.
+        /// </param>
+        /// <param name="streamMock">
+        /// The stream mock.
+        /// </param>
+        /// <returns>
+        /// The <see cref="DomainEventStorage"/>.
+        /// </returns>
         private DomainEventStorage<IDomainEvent> GetFakeEventStore(
-            Mock<IStoreEvents> store,
+            Mock<IStoreEvents> store, 
             Mock<IEventStream> streamMock)
         {
             var storeBuilder = new Mock<IEventStoreBuilder>();
@@ -300,10 +428,22 @@
 
         #endregion
 
+        /// <summary>
+        /// The domain event storage fake.
+        /// </summary>
         internal class DomainEventStorageFake : DomainEventStorage<IDomainEvent>
         {
             #region Constructors and Destructors
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="DomainEventStorageFake"/> class.
+            /// </summary>
+            /// <param name="builder">
+            /// The builder.
+            /// </param>
+            /// <param name="mock">
+            /// The mock.
+            /// </param>
             public DomainEventStorageFake(IEventStoreBuilder builder, Mock<IEventStream> mock)
                 : base(builder)
             {
@@ -314,12 +454,24 @@
 
             #region Public Properties
 
+            /// <summary>
+            /// Gets or sets the stream mock.
+            /// </summary>
             public Mock<IEventStream> StreamMock { get; set; }
 
             #endregion
 
             #region Methods
 
+            /// <summary>
+            /// The get stream.
+            /// </summary>
+            /// <param name="id">
+            /// The id.
+            /// </param>
+            /// <returns>
+            /// The <see cref="IEventStream"/>.
+            /// </returns>
             protected override IEventStream GetStream(Guid id)
             {
                 return this.StreamMock.Object;

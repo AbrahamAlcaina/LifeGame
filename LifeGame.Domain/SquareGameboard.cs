@@ -1,34 +1,53 @@
-﻿namespace LifeGame.Domain
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SquareGameboard.cs" company="Abraham Alcaina">
+//   AAA Code
+// </copyright>
+// <summary>
+//   The square gameboard.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace LifeGame.Domain
 {
     using System;
     using System.Collections.Generic;
 
-    public class SquareGameboard : IGameboardConstructorStrategy
+    /// <summary>
+    /// The square gameboard.
+    /// </summary>
+    public class SquareGameboard : IGameBoardStrategy
     {
+        #region Public Methods and Operators
+
+        /// <summary>
+        /// The create gameboard.
+        /// </summary>
+        /// <param name="numberOfCells">
+        /// The number of cells.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IList"/>.
+        /// </returns>
+        /// <exception cref="Exception">
+        /// </exception>
         public IList<Cell> CreateGameboard(int numberOfCells)
         {
-            var sqr = Math.Sqrt(numberOfCells);
+            double sqr = Math.Sqrt(numberOfCells);
             if (sqr != Math.Truncate(sqr))
+            {
                 throw new Exception("not valid size");
+            }
+
             var side = (int)sqr;
             var grid = new Cell[side, side];
             this.CreateCells(grid, side, side);
             this.AssociateCellsWithHisNeighbors(grid, side, side);
-            return this.ToList(grid,side);
+            return this.ToList(grid, side);
         }
 
-        private IList<Cell> ToList(Cell[,] grid, int side)
-        {
-            var list = new List<Cell>();
-            for (int i = side - 1; i >= 0; i--)
-            {
-                for (int j = side - 1; j >= 0; j--)
-                {
-                   list.Add(grid[i, j]);
-                }
-            }
-            return list;
-        }
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// The associate neighbors.
@@ -103,5 +122,33 @@
                 }
             }
         }
+
+        /// <summary>
+        /// The to list.
+        /// </summary>
+        /// <param name="grid">
+        /// The grid.
+        /// </param>
+        /// <param name="side">
+        /// The side.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IList"/>.
+        /// </returns>
+        private IList<Cell> ToList(Cell[,] grid, int side)
+        {
+            var list = new List<Cell>();
+            for (int i = side - 1; i >= 0; i--)
+            {
+                for (int j = side - 1; j >= 0; j--)
+                {
+                    list.Add(grid[i, j]);
+                }
+            }
+
+            return list;
+        }
+
+        #endregion
     }
 }
