@@ -1,0 +1,189 @@
+﻿<Controls:MetroWindow
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+    xmlns:lgUi="clr-namespace:LifeGame.UI.Universe;assembly=LifeGame.UI.Universe"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Name="MainWindow1"
+    x:Class="LifeGame.UI.View.Views.MainView"
+    Height="600"
+    Width="960" ShowTitleBar="false" Icon="..\Resources\150.png">
+    <Controls:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
+
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/green.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="/Resources/Icons.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+                <ResourceDictionary
+                    Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="RowDataTemplate">
+                <Grid>
+                    <ItemsControl ItemsSource="{Binding Cells}" ItemTemplate="{DynamicResource CellTemplate}"
+                                  ItemsPanel="{DynamicResource CellsItemsPanelTemplate}" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="CellTemplate">
+                <Grid>
+                    <Rectangle Fill="{Binding ColorBrush}" HorizontalAlignment="Stretch" Height="10" Width="10"
+                               Stroke="DarkGray" VerticalAlignment="Stretch" StrokeThickness="1" />
+                </Grid>
+            </DataTemplate>
+            <ItemsPanelTemplate x:Key="CellsItemsPanelTemplate" >
+                <StackPanel IsItemsHost="True" Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+
+        </ResourceDictionary>
+    </Controls:MetroWindow.Resources>
+    <i:Interaction.Behaviors>
+        <behaviours:BorderlessWindowBehavior ResizeWithGrip="True" />
+    </i:Interaction.Behaviors>
+    <Controls:MetroWindow.WindowCommands>
+        <Controls:WindowCommands>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="..\Resources\glider.png" />
+            </StackPanel>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.WindowCommands>
+    <Grid Margin="20,20,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*" />
+            <ColumnDefinition Width="107*" />
+        </Grid.ColumnDefinitions>
+
+        <TabControl TabStripPlacement="Left" Grid.ColumnSpan="2">
+            <Controls:MetroTabItem Header="Game" HeaderFontSize="40">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Row="0" Grid.ColumnSpan="3">
+                        <TextBlock FontSize="30">
+                            <Run Text="Conway's Game of Life" />
+                        </TextBlock>
+                    </DockPanel>
+                    <Separator Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="0" Margin="5,0,5,0" />
+                    <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock FontSize="14" TextWrapping="Wrap" Margin="0,0,0,-98">
+                            <Run
+                                Text="The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970. The &quot;game&quot; is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves." />
+                        </TextBlock>
+                    </DockPanel>
+                    <StackPanel Grid.Column="2" Grid.Row="2" Background="{DynamicResource AccentColorBrush}">
+                        <Controls:TransitioningContentControl x:Name="transitioning"
+                                                              Width="250"
+                                                              Height="50"
+                                                              Margin="0, 10, 0, 0"
+                                                              Transition="DownTransition" />
+                        <Controls:TransitioningContentControl x:Name="customTransitioning"
+                                                              Width="250"
+                                                              Height="50"
+                                                              Margin="0, 10, 0, 0"
+                                                              Transition="CustomTransition">
+                            <Controls:TransitioningContentControl.CustomVisualStates>
+                                <VisualState x:Name="CustomTransition">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Storyboard.TargetName="CurrentContentPresentationSite"
+                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.700" Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                                                       Storyboard.TargetName="PreviousContentPresentationSite"
+                                                                       Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.700" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </Controls:TransitioningContentControl.CustomVisualStates>
+                        </Controls:TransitioningContentControl>
+                    </StackPanel>
+                    <DockPanel Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0">
+                        <TextBlock FontSize="30">
+                            <Run Text="Rules" />
+                        </TextBlock>
+                    </DockPanel>
+                    <Separator Grid.ColumnSpan="3" Grid.Row="4" Grid.Column="0" Margin="5,0,5,0" />
+                    <DockPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3">
+                        <TextBlock FontSize="14" TextWrapping="Wrap" Margin="0,0,0,-98">
+                            <Run
+                                Text="The universe of the Game of Life is an infinite two-dimensional orthogonal grid of square cells, each of which is in one of two possible states, alive or dead. Every cell interacts with its eight neighbours, which are the cells that are horizontally, vertically, or diagonally adjacent. At each step in time, the following transitions occur: Any live cell with fewer than two live neighbours dies, as if caused by under-population. Any live cell with two or three live neighbours lives on to the next generation. Any live cell with more than three live neighbours dies, as if by overcrowding. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction. The initial pattern constitutes the seed of the system. The first generation is created by applying the above rules simultaneously to every cell in the seed—births and deaths occur simultaneously, and the discrete moment at which this happens is sometimes called a tick (in other words, each generation is a pure function of the preceding one). The rules continue to be applied repeatedly to create further generations." />
+                        </TextBlock>
+                    </DockPanel>
+                </Grid>
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="Play" HeaderFontSize="20" Margin="20,0,0,0" IsSelected="True">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Grid.RowSpan="2">
+                        <Button Width="100" x:Name="Create"
+                                Margin="0, 10, 0, 0"
+                                IsEnabled="{Binding CanCreate}"
+                                Content="Create" cal:Message.Attach="NewGame" />
+                        <Button Width="100" x:Name="Initialize"
+                                Margin="0, 10, 0, 0"
+                                IsEnabled="{Binding CanInitialize}"
+                                Content="Initialize" cal:Message.Attach="InicializateGame" />
+                        <Button Width="100" x:Name="Evolve"
+                                Margin="0, 10, 0, 0"
+                                IsEnabled="{Binding CanEvolve}"
+                                Content="Evolve" cal:Message.Attach="EvolveGame" />
+                        <ToggleButton Width="100"
+                                      Margin="0, 10, 0, 0"
+                                      Content="Automatic evolve"
+                                      IsEnabled="False" />
+                        <Label Content="Game id" />
+                        <TextBlock Text="{Binding CurrentGame, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Grid.RowSpan="2" Margin="1,20,1,1">
+                        <ItemsControl ItemsSource="{Binding UniverseGrid.Rows, Mode=OneWay}"
+                                      ItemTemplate="{DynamicResource RowDataTemplate}" Height="540" />
+                    </StackPanel>
+                </Grid>
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="Options" HeaderFontSize="20" Margin="20,0,0,0">
+                <TextBlock FontSize="30" Text="Content" />
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="Saved" HeaderFontSize="20" Margin="20,0,0,0">
+                <TextBlock FontSize="30" Text="Content" />
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="Stadistics" HeaderFontSize="40">
+                <TextBlock FontSize="30" Text="Content" />
+            </Controls:MetroTabItem>
+        </TabControl>
+    </Grid>
+</Controls:MetroWindow>
