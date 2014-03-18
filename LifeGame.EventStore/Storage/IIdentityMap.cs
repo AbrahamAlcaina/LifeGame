@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="IIdentityMap.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The IdentityMap interface.
@@ -14,7 +14,7 @@ namespace LifeGame.EventStore.Storage
     using LifeGame.EventStore.Storage.Memento;
 
     /// <summary>
-    /// The IdentityMap interface.
+    ///     The IdentityMap interface.
     /// </summary>
     /// <typeparam name="TDomainEvent">
     /// </typeparam>
@@ -24,10 +24,10 @@ namespace LifeGame.EventStore.Storage
         #region Public Methods and Operators
 
         /// <summary>
-        /// The add.
+        ///     The add.
         /// </summary>
         /// <param name="aggregateRoot">
-        /// The aggregate root.
+        ///     The aggregate root.
         /// </param>
         /// <typeparam name="TAggregate">
         /// </typeparam>
@@ -35,27 +35,27 @@ namespace LifeGame.EventStore.Storage
             where TAggregate : class, IOrginator, IEventProvider<TDomainEvent>, new();
 
         /// <summary>
-        /// The get by id.
+        ///     The get by id.
         /// </summary>
         /// <param name="id">
-        /// The id.
+        ///     The id.
         /// </param>
         /// <typeparam name="TAggregate">
         /// </typeparam>
         /// <returns>
-        /// The <see cref="TAggregate"/>.
+        ///     The <see cref="TAggregate" />.
         /// </returns>
         TAggregate GetById<TAggregate>(Guid id)
             where TAggregate : class, IOrginator, IEventProvider<TDomainEvent>, new();
 
         /// <summary>
-        /// The remove.
+        ///     The remove.
         /// </summary>
         /// <param name="aggregateRootType">
-        /// The aggregate root type.
+        ///     The aggregate root type.
         /// </param>
         /// <param name="aggregateRootId">
-        /// The aggregate root id.
+        ///     The aggregate root id.
         /// </param>
         void Remove(Type aggregateRootType, Guid aggregateRootId);
 

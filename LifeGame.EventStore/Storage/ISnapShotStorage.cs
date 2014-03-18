@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ISnapShotStorage.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The SnapShotStorage interface.
@@ -12,7 +12,7 @@ namespace LifeGame.EventStore.Storage
     using System;
 
     /// <summary>
-    /// The SnapShotStorage interface.
+    ///     The SnapShotStorage interface.
     /// </summary>
     /// <typeparam name="TDomainEvent">
     /// </typeparam>
@@ -22,21 +22,21 @@ namespace LifeGame.EventStore.Storage
         #region Public Methods and Operators
 
         /// <summary>
-        /// The get snap shot.
+        ///     The get snap shot.
         /// </summary>
         /// <param name="entityId">
-        /// The entity id.
+        ///     The entity id.
         /// </param>
         /// <returns>
-        /// The <see cref="ISnapShot"/>.
+        ///     The <see cref="ISnapShot" />.
         /// </returns>
         ISnapShot GetSnapShot(Guid entityId);
 
         /// <summary>
-        /// The save shap shot.
+        ///     The save shap shot.
         /// </summary>
         /// <param name="entity">
-        /// The entity.
+        ///     The entity.
         /// </param>
         void SaveShapShot(IEventProvider<TDomainEvent> entity);
 

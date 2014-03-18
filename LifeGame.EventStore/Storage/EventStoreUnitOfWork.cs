@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 // <copyright file="EventStoreUnitOfWork.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The event store unit of work.
@@ -17,7 +17,7 @@ namespace LifeGame.EventStore.Storage
     using LifeGame.EventStore.Storage.Memento;
 
     /// <summary>
-    /// The event store unit of work.
+    ///     The event store unit of work.
     /// </summary>
     /// <typeparam name="TDomainEvent">
     /// </typeparam>
@@ -27,22 +27,22 @@ namespace LifeGame.EventStore.Storage
         #region Fields
 
         /// <summary>
-        /// The _bus.
+        ///     The _bus.
         /// </summary>
         private readonly IBus _bus;
 
         /// <summary>
-        /// The _domain event storage.
+        ///     The _domain event storage.
         /// </summary>
         private readonly IDomainEventStorage<TDomainEvent> _domainEventStorage;
 
         /// <summary>
-        /// The _event providers.
+        ///     The _event providers.
         /// </summary>
         private readonly List<IEventProvider<TDomainEvent>> _eventProviders;
 
         /// <summary>
-        /// The _identity map.
+        ///     The _identity map.
         /// </summary>
         private readonly IIdentityMap<TDomainEvent> _identityMap;
 
@@ -51,20 +51,20 @@ namespace LifeGame.EventStore.Storage
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventStoreUnitOfWork{TDomainEvent}"/> class.
+        ///     Initializes a new instance of the <see cref="EventStoreUnitOfWork{TDomainEvent}" /> class.
         /// </summary>
         /// <param name="domainEventStorage">
-        /// The domain event storage.
+        ///     The domain event storage.
         /// </param>
         /// <param name="identityMap">
-        /// The identity map.
+        ///     The identity map.
         /// </param>
         /// <param name="bus">
-        /// The bus.
+        ///     The bus.
         /// </param>
         public EventStoreUnitOfWork(
-            IDomainEventStorage<TDomainEvent> domainEventStorage, 
-            IIdentityMap<TDomainEvent> identityMap, 
+            IDomainEventStorage<TDomainEvent> domainEventStorage,
+            IIdentityMap<TDomainEvent> identityMap,
             IBus bus)
         {
             this._domainEventStorage = domainEventStorage;
@@ -78,10 +78,10 @@ namespace LifeGame.EventStore.Storage
         #region Public Methods and Operators
 
         /// <summary>
-        /// The add.
+        ///     The add.
         /// </summary>
         /// <param name="aggregateRoot">
-        /// The aggregate root.
+        ///     The aggregate root.
         /// </param>
         /// <typeparam name="TAggregate">
         /// </typeparam>
@@ -92,7 +92,7 @@ namespace LifeGame.EventStore.Storage
         }
 
         /// <summary>
-        /// The commit.
+        ///     The commit.
         /// </summary>
         public void Commit()
         {
@@ -112,15 +112,15 @@ namespace LifeGame.EventStore.Storage
         }
 
         /// <summary>
-        /// The get by id.
+        ///     The get by id.
         /// </summary>
         /// <param name="id">
-        /// The id.
+        ///     The id.
         /// </param>
         /// <typeparam name="TAggregate">
         /// </typeparam>
         /// <returns>
-        /// The <see cref="TAggregate"/>.
+        ///     The <see cref="TAggregate" />.
         /// </returns>
         public TAggregate GetById<TAggregate>(Guid id)
             where TAggregate : class, IOrginator, IEventProvider<TDomainEvent>, new()
@@ -137,10 +137,10 @@ namespace LifeGame.EventStore.Storage
         }
 
         /// <summary>
-        /// The register for tracking.
+        ///     The register for tracking.
         /// </summary>
         /// <param name="aggregateRoot">
-        /// The aggregate root.
+        ///     The aggregate root.
         /// </param>
         /// <typeparam name="TAggregate">
         /// </typeparam>
@@ -152,7 +152,7 @@ namespace LifeGame.EventStore.Storage
         }
 
         /// <summary>
-        /// The rollback.
+        ///     The rollback.
         /// </summary>
         public void Rollback()
         {
@@ -171,13 +171,13 @@ namespace LifeGame.EventStore.Storage
         #region Methods
 
         /// <summary>
-        /// The load snap shot if exists.
+        ///     The load snap shot if exists.
         /// </summary>
         /// <param name="id">
-        /// The id.
+        ///     The id.
         /// </param>
         /// <param name="aggregateRoot">
-        /// The aggregate root.
+        ///     The aggregate root.
         /// </param>
         private void LoadSnapShotIfExists(Guid id, IOrginator aggregateRoot)
         {
@@ -191,13 +191,13 @@ namespace LifeGame.EventStore.Storage
         }
 
         /// <summary>
-        /// The load remaining history events.
+        ///     The load remaining history events.
         /// </summary>
         /// <param name="id">
-        /// The id.
+        ///     The id.
         /// </param>
         /// <param name="aggregateRoot">
-        /// The aggregate root.
+        ///     The aggregate root.
         /// </param>
         private void loadRemainingHistoryEvents(Guid id, IEventProvider<TDomainEvent> aggregateRoot)
         {

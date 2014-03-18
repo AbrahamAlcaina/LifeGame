@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 // <copyright file="BaseAggregateRoot.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The base aggregate root.
@@ -14,42 +14,43 @@ namespace LifeGame.EventStore.Aggregate
     using System.Linq;
 
     /// <summary>
-    /// The base aggregate root.
+    ///     The base aggregate root.
     /// </summary>
-    /// <typeparam name="TDomainEvent">
+    /// <typeparam name="TDomainEntity">
+    ///     Kind of entity
     /// </typeparam>
-    public class BaseAggregateRoot<TDomainEvent> : IEventProvider<TDomainEvent>, IRegisterChildEntities<TDomainEvent>
-        where TDomainEvent : IDomainEvent
+    public class BaseAggregateRoot<TDomainEntity> : IEventProvider<TDomainEntity>, IRegisterChildEntities<TDomainEntity>
+        where TDomainEntity : IDomainEvent
     {
         #region Fields
 
         /// <summary>
-        /// The applied events.
+        ///     The applied events.
         /// </summary>
-        private readonly List<TDomainEvent> appliedEvents;
+        private readonly List<TDomainEntity> appliedEvents;
 
         /// <summary>
-        /// The child event providers.
+        ///     The child event providers.
         /// </summary>
-        private readonly List<IEntityEventProvider<TDomainEvent>> childEventProviders;
+        private readonly List<IEntityEventProvider<TDomainEntity>> childEventProviders;
 
         /// <summary>
-        /// The registered events.
+        ///     The registered events.
         /// </summary>
-        private readonly Dictionary<Type, Action<TDomainEvent>> registeredEvents;
+        private readonly Dictionary<Type, Action<TDomainEntity>> registeredEvents;
 
         #endregion
 
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BaseAggregateRoot{TDomainEvent}"/> class.
+        ///     Initializes a new instance of the <see cref="BaseAggregateRoot{TDomainEntity}" /> class.
         /// </summary>
         public BaseAggregateRoot()
         {
-            this.registeredEvents = new Dictionary<Type, Action<TDomainEvent>>();
-            this.appliedEvents = new List<TDomainEvent>();
-            this.childEventProviders = new List<IEntityEventProvider<TDomainEvent>>();
+            this.registeredEvents = new Dictionary<Type, Action<TDomainEntity>>();
+            this.appliedEvents = new List<TDomainEntity>();
+            this.childEventProviders = new List<IEntityEventProvider<TDomainEntity>>();
         }
 
         #endregion
@@ -57,17 +58,17 @@ namespace LifeGame.EventStore.Aggregate
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the event version.
+        ///     Gets or sets the event version.
         /// </summary>
         public int EventVersion { get; protected set; }
 
         /// <summary>
-        /// Gets or sets the id.
+        ///     Gets or sets the id.
         /// </summary>
         public Guid Id { get; protected set; }
 
         /// <summary>
-        /// Gets or sets the version.
+        ///     Gets or sets the version.
         /// </summary>
         public int Version { get; protected set; }
 
@@ -76,67 +77,67 @@ namespace LifeGame.EventStore.Aggregate
         #region Explicit Interface Methods
 
         /// <summary>
-        /// The clear.
+        ///     The clear.
         /// </summary>
-        void IEventProvider<TDomainEvent>.Clear()
+        void IEventProvider<TDomainEntity>.Clear()
         {
             this.childEventProviders.ForEach(x => x.Clear());
             this.appliedEvents.Clear();
         }
 
         /// <summary>
-        /// The get changes.
+        ///     The get changes.
         /// </summary>
         /// <returns>
-        /// The <see cref="IEnumerable"/>.
+        ///     The <see cref="IEnumerable" />.
         /// </returns>
-        IEnumerable<TDomainEvent> IEventProvider<TDomainEvent>.GetChanges()
+        IEnumerable<TDomainEntity> IEventProvider<TDomainEntity>.GetChanges()
         {
             return
                 this.appliedEvents.Concat(this.GetChildEventsAndUpdateEventVersion()).OrderBy(x => x.Version).ToList();
         }
 
         /// <summary>
-        /// The load from history.
+        ///     The load from history.
         /// </summary>
         /// <param name="domainEvents">
-        /// The domain events.
+        ///     The domain events.
         /// </param>
-        void IEventProvider<TDomainEvent>.LoadFromHistory(IEnumerable<TDomainEvent> domainEvents)
+        void IEventProvider<TDomainEntity>.LoadFromHistory(IEnumerable<TDomainEntity> domainEvents)
         {
             if (!domainEvents.Any())
             {
                 return;
             }
 
-            foreach (TDomainEvent domainEvent in domainEvents)
+            foreach (TDomainEntity domainEvent in domainEvents)
             {
                 this.apply(domainEvent.GetType(), domainEvent);
             }
 
-            this.Version = domainEvents.Last().Version;
+            this.Version += domainEvents.Count();
             this.EventVersion = this.Version;
         }
 
         /// <summary>
-        /// The update version.
+        ///     The update version.
         /// </summary>
         /// <param name="version">
-        /// The version.
+        ///     The version.
         /// </param>
-        void IEventProvider<TDomainEvent>.UpdateVersion(int version)
+        void IEventProvider<TDomainEntity>.UpdateVersion(int version)
         {
             this.Version = version;
         }
 
         /// <summary>
-        /// The register child event provider.
+        ///     The register child event provider.
         /// </summary>
         /// <param name="entityEventProvider">
-        /// The entity event provider.
+        ///     The entity event provider.
         /// </param>
-        void IRegisterChildEntities<TDomainEvent>.RegisterChildEventProvider(
-            IEntityEventProvider<TDomainEvent> entityEventProvider)
+        void IRegisterChildEntities<TDomainEntity>.RegisterChildEventProvider(
+            IEntityEventProvider<TDomainEntity> entityEventProvider)
         {
             entityEventProvider.HookUpVersionProvider(this.GetNewEventVersion);
             this.childEventProviders.Add(entityEventProvider);
@@ -147,14 +148,14 @@ namespace LifeGame.EventStore.Aggregate
         #region Methods
 
         /// <summary>
-        /// The apply.
+        ///     The apply.
         /// </summary>
         /// <param name="domainEvent">
-        /// The domain event.
+        ///     The domain event.
         /// </param>
         /// <typeparam name="TEvent">
         /// </typeparam>
-        protected void Apply<TEvent>(TEvent domainEvent) where TEvent : class, TDomainEvent
+        protected void Apply<TEvent>(TEvent domainEvent) where TEvent : class, TDomainEntity
         {
             domainEvent.AggregateId = this.Id;
             domainEvent.Version = this.GetNewEventVersion();
@@ -163,34 +164,34 @@ namespace LifeGame.EventStore.Aggregate
         }
 
         /// <summary>
-        /// The register event.
+        ///     The register event.
         /// </summary>
         /// <param name="eventHandler">
-        /// The event handler.
+        ///     The event handler.
         /// </param>
         /// <typeparam name="TEvent">
         /// </typeparam>
-        protected void RegisterEvent<TEvent>(Action<TEvent> eventHandler) where TEvent : class, TDomainEvent
+        protected void RegisterEvent<TEvent>(Action<TEvent> eventHandler) where TEvent : class, TDomainEntity
         {
             this.registeredEvents.Add(typeof(TEvent), theEvent => eventHandler(theEvent as TEvent));
         }
 
         /// <summary>
-        /// The get child events and update event version.
+        ///     The get child events and update event version.
         /// </summary>
         /// <returns>
-        /// The <see cref="IEnumerable"/>.
+        ///     The <see cref="IEnumerable" />.
         /// </returns>
-        private IEnumerable<TDomainEvent> GetChildEventsAndUpdateEventVersion()
+        private IEnumerable<TDomainEntity> GetChildEventsAndUpdateEventVersion()
         {
             return this.childEventProviders.SelectMany(entity => entity.GetChanges());
         }
 
         /// <summary>
-        /// The get new event version.
+        ///     The get new event version.
         /// </summary>
         /// <returns>
-        /// The <see cref="int"/>.
+        ///     The <see cref="int" />.
         /// </returns>
         private int GetNewEventVersion()
         {
@@ -198,26 +199,26 @@ namespace LifeGame.EventStore.Aggregate
         }
 
         /// <summary>
-        /// The apply.
+        ///     The apply.
         /// </summary>
         /// <param name="eventType">
-        /// The event type.
+        ///     The event type.
         /// </param>
         /// <param name="domainEvent">
-        /// The domain event.
+        ///     The domain event.
         /// </param>
         /// <exception cref="UnregisteredDomainEventException">
         /// </exception>
-        private void apply(Type eventType, TDomainEvent domainEvent)
+        private void apply(Type eventType, TDomainEntity domainEvent)
         {
-            Action<TDomainEvent> handler;
+            Action<TDomainEntity> handler;
 
             if (!this.registeredEvents.TryGetValue(eventType, out handler))
             {
                 throw new UnregisteredDomainEventException(
                     string.Format(
-                        "The requested domain event '{0}' is not registered in '{1}'", 
-                        eventType.FullName, 
+                        "The requested domain event '{0}' is not registered in '{1}'",
+                        eventType.FullName,
                         this.GetType().FullName));
             }
 

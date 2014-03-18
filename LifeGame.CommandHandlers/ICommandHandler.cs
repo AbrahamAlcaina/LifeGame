@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ICommandHandler.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The CommandHandler interface.
@@ -9,24 +9,15 @@
 
 namespace LifeGame.CommandHandlers
 {
+    using LifeGame.EventStore;
+
     /// <summary>
-    /// The CommandHandler interface.
+    ///     The CommandHandler interface.
     /// </summary>
     /// <typeparam name="TCommand">
     /// </typeparam>
-    public interface ICommandHandler<in TCommand>
+    public interface ICommandHandler<in TCommand> : IHandler<TCommand>
         where TCommand : class
     {
-        #region Public Methods and Operators
-
-        /// <summary>
-        /// The execute.
-        /// </summary>
-        /// <param name="command">
-        /// The command.
-        /// </param>
-        void Execute(TCommand command);
-
-        #endregion
     }
 }

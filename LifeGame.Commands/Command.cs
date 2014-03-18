@@ -1,11 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Command.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The base command.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace LifeGame.Commands
 {
     using System;
@@ -19,10 +20,10 @@ namespace LifeGame.Commands
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Command"/> class.
+        ///     Initializes a new instance of the <see cref="Command" /> class.
         /// </summary>
         /// <param name="id">
-        /// The id.
+        ///     The id.
         /// </param>
         public Command(Guid id)
         {

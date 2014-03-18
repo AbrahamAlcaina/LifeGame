@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="DomainEvent.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The domain event.
@@ -14,7 +14,7 @@ namespace LifeGame.Events
     using LifeGame.EventStore;
 
     /// <summary>
-    /// The domain event.
+    ///     The domain event.
     /// </summary>
     [Serializable]
     public class DomainEvent : IDomainEvent
@@ -22,7 +22,7 @@ namespace LifeGame.Events
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DomainEvent"/> class.
+        ///     Initializes a new instance of the <see cref="DomainEvent" /> class.
         /// </summary>
         public DomainEvent()
         {
@@ -34,21 +34,21 @@ namespace LifeGame.Events
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the aggregate id.
+        ///     Gets or sets the aggregate id.
         /// </summary>
         public Guid AggregateId { get; set; }
 
         /// <summary>
-        /// Gets the id.
+        ///     Gets or sets the id.
         /// </summary>
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
 
         #endregion
 
         #region Explicit Interface Properties
 
         /// <summary>
-        /// Gets or sets the version.
+        ///     Gets or sets the version.
         /// </summary>
         int IDomainEvent.Version { get; set; }
 

@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,15 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CreateGameCommandHandler.cs" />
     <Compile Include="ICommandHandler.cs" />
+    <Compile Include="IMutexCommand.cs" />
+    <Compile Include="InitializeGameCommandHandler.cs" />
+    <Compile Include="CreateGameCommandHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StartGameCommandHandler.cs" />
+    <Compile Include="EvolveCommandHandler.cs" />
+    <Compile Include="TransactionHandlerDecorator.cs" />
+    <Compile Include="TransactionHandlerWithMutexDecorator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LifeGame.Commands\LifeGame.Commands.csproj">
       <Project>{CE3A4643-83CE-445C-9B13-1B65225A46E3}</Project>
       <Name>LifeGame.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeGame.Common\LifeGame.Common.csproj">
+      <Project>{9c5e5699-79ac-4dd8-a0e0-436c924024f1}</Project>
+      <Name>LifeGame.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\LifeGame.Domain\LifeGame.Domain.csproj">
       <Project>{0B0F2DAF-83A3-4F2F-9937-283D9C8F17DF}</Project>

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="EventStoreRegistry.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The event store registry.
@@ -9,6 +9,7 @@
 
 namespace LifeGame.Configuration
 {
+    using LifeGame.EventStore;
     using LifeGame.EventStore.Implementation;
     using LifeGame.EventStore.Storage;
 
@@ -16,20 +17,20 @@ namespace LifeGame.Configuration
     using SimpleInjector.Extensions;
 
     /// <summary>
-    /// The event store registry.
+    ///     The event store registry.
     /// </summary>
     public class EventStoreRegistry
     {
         #region Public Methods and Operators
 
         /// <summary>
-        /// The event store boostrap.
+        ///     The event store boostrap.
         /// </summary>
         /// <param name="container">
-        /// The container.
+        ///     The container.
         /// </param>
         /// <returns>
-        /// The <see cref="EventStoreRegistry"/>.
+        ///     The <see cref="EventStoreRegistry" />.
         /// </returns>
         public static EventStoreRegistry EventStoreBoostrap(Container container)
         {
@@ -41,27 +42,31 @@ namespace LifeGame.Configuration
         #region Methods
 
         /// <summary>
-        /// The registry.
+        ///     The registry.
         /// </summary>
         /// <param name="container">
-        /// The container.
+        ///     The container.
         /// </param>
         /// <returns>
-        /// The <see cref="EventStoreRegistry"/>.
+        ///     The <see cref="EventStoreRegistry" />.
         /// </returns>
         private EventStoreRegistry Registry(Container container)
         {
             container.Register<IEventStoreBuilder, EventStoreBuilder>();
+            container.Register<IDomainRepository<IDomainEvent>, DomainRepository<IDomainEvent>>();
+
             container.RegisterManyForOpenGeneric(
-                typeof(IDomainEventStorage<>), 
-                AccessibilityOption.AllTypes, 
-                (serviceType, implTypes) => container.RegisterAll(serviceType, implTypes), 
-                typeof(IDomainEventStorage<>).Assembly);
+                typeof(IDomainEventStorage<>),
+                AccessibilityOption.AllTypes,
+                container.RegisterAll,
+                typeof(DomainEventStorage<>).Assembly);
+
             container.RegisterManyForOpenGeneric(
-                typeof(IEventStoreUnitOfWork<>), 
-                AccessibilityOption.AllTypes, 
-                (serviceType, implTypes) => container.RegisterAll(serviceType, implTypes), 
+                typeof(IEventStoreUnitOfWork<>),
+                AccessibilityOption.AllTypes,
+                container.RegisterAll,
                 typeof(IEventStoreUnitOfWork<>).Assembly);
+
             return this;
         }
 

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="DomainEventStorageTest.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The domain event storage test.
@@ -25,14 +25,14 @@ namespace LifeGame.EventStore.Implementation.Test
     using Xunit;
 
     /// <summary>
-    /// The domain event storage test.
+    ///     The domain event storage test.
     /// </summary>
     public class DomainEventStorageTest
     {
         #region Public Methods and Operators
 
         /// <summary>
-        /// The begin transaction test.
+        ///     The begin transaction test.
         /// </summary>
         [Fact]
         public void BeginTransactionTest()
@@ -48,7 +48,7 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The begin transaction two at the same time test.
+        ///     The begin transaction two at the same time test.
         /// </summary>
         [Fact]
         public void BeginTransactionTwoAtTheSameTimeTest()
@@ -62,7 +62,7 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The commit test.
+        ///     The commit test.
         /// </summary>
         [Fact]
         public void CommitTest()
@@ -79,7 +79,7 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The constructor test.
+        ///     The constructor test.
         /// </summary>
         [Fact]
         public void ConstructorTest()
@@ -95,7 +95,7 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The get all events test.
+        ///     The get all events test.
         /// </summary>
         [Fact]
         public void GetAllEventsTest()
@@ -117,7 +117,7 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The get event count since last snap shot test.
+        ///     The get event count since last snap shot test.
         /// </summary>
         [Fact]
         public void GetEventCountSinceLastSnapShotTest()
@@ -129,10 +129,10 @@ namespace LifeGame.EventStore.Implementation.Test
             var store = new Mock<IStoreEvents>();
             var advanced = new Mock<IPersistStreams>();
             DomainEventStorage<IDomainEvent> sut = this.FakeEventStoreForSnapshots(
-                id, 
-                stream, 
-                snapshot, 
-                store, 
+                id,
+                stream,
+                snapshot,
+                store,
                 advanced);
 
             // act 
@@ -145,7 +145,7 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The get events since last snap shot test.
+        ///     The get events since last snap shot test.
         /// </summary>
         [Fact]
         public void GetEventsSinceLastSnapShotTest()
@@ -157,10 +157,10 @@ namespace LifeGame.EventStore.Implementation.Test
             var store = new Mock<IStoreEvents>();
             var advanced = new Mock<IPersistStreams>();
             DomainEventStorage<IDomainEvent> sut = this.FakeEventStoreForSnapshots(
-                id, 
-                stream, 
-                snapshot, 
-                store, 
+                id,
+                stream,
+                snapshot,
+                store,
                 advanced);
 
             // act 
@@ -173,7 +173,7 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The get snap shot test.
+        ///     The get snap shot test.
         /// </summary>
         [Fact]
         public void GetSnapShotTest()
@@ -199,7 +199,7 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The rollback test.
+        ///     The rollback test.
         /// </summary>
         [Fact]
         public void RollbackTest()
@@ -216,7 +216,7 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The save integration db test.
+        ///     The save integration db test.
         /// </summary>
         [Fact(Skip = "Integration Test")]
         public void SaveIntegrationDBTest()
@@ -235,7 +235,7 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The save shap shot test.
+        ///     The save shap shot test.
         /// </summary>
         [Fact]
         public void SaveShapShotTest()
@@ -257,7 +257,7 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The save test.
+        ///     The save test.
         /// </summary>
         [Fact]
         public void SaveTest()
@@ -280,7 +280,7 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The save with incorrect version test.
+        ///     The save with incorrect version test.
         /// </summary>
         [Fact]
         public void SaveWithIncorrectVersionTest()
@@ -294,7 +294,7 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The sql is installed.
+        ///     The sql is installed.
         /// </summary>
         [Fact]
         public void SqlIsInstalled()
@@ -313,31 +313,31 @@ namespace LifeGame.EventStore.Implementation.Test
         #region Methods
 
         /// <summary>
-        /// The fake event store for snapshots.
+        ///     The fake event store for snapshots.
         /// </summary>
         /// <param name="id">
-        /// The id.
+        ///     The id.
         /// </param>
         /// <param name="stream">
-        /// The stream.
+        ///     The stream.
         /// </param>
         /// <param name="snapshot">
-        /// The snapshot.
+        ///     The snapshot.
         /// </param>
         /// <param name="store">
-        /// The store.
+        ///     The store.
         /// </param>
         /// <param name="advanced">
-        /// The advanced.
+        ///     The advanced.
         /// </param>
         /// <returns>
-        /// The <see cref="DomainEventStorage"/>.
+        ///     The <see cref="DomainEventStorage" />.
         /// </returns>
         private DomainEventStorage<IDomainEvent> FakeEventStoreForSnapshots(
-            Guid id, 
-            Mock<IEventStream> stream, 
-            Snapshot snapshot, 
-            Mock<IStoreEvents> store, 
+            Guid id,
+            Mock<IEventStream> stream,
+            Snapshot snapshot,
+            Mock<IStoreEvents> store,
             Mock<IPersistStreams> advanced)
         {
             advanced.Setup(a => a.GetSnapshot(id, int.MaxValue)).Returns(snapshot);
@@ -350,10 +350,10 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The get event store.
+        ///     The get event store.
         /// </summary>
         /// <returns>
-        /// The <see cref="DomainEventStorage"/>.
+        ///     The <see cref="DomainEventStorage" />.
         /// </returns>
         private DomainEventStorage<IDomainEvent> GetEventStore()
         {
@@ -363,10 +363,10 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The get fake event store.
+        ///     The get fake event store.
         /// </summary>
         /// <returns>
-        /// The <see cref="DomainEventStorage"/>.
+        ///     The <see cref="DomainEventStorage" />.
         /// </returns>
         private DomainEventStorage<IDomainEvent> GetFakeEventStore()
         {
@@ -375,13 +375,13 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The get fake event store.
+        ///     The get fake event store.
         /// </summary>
         /// <param name="streamMock">
-        /// The stream mock.
+        ///     The stream mock.
         /// </param>
         /// <returns>
-        /// The <see cref="DomainEventStorage"/>.
+        ///     The <see cref="DomainEventStorage" />.
         /// </returns>
         private DomainEventStorage<IDomainEvent> GetFakeEventStore(Mock<IEventStream> streamMock)
         {
@@ -390,13 +390,13 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The get fake event store.
+        ///     The get fake event store.
         /// </summary>
         /// <param name="store">
-        /// The store.
+        ///     The store.
         /// </param>
         /// <returns>
-        /// The <see cref="DomainEventStorage"/>.
+        ///     The <see cref="DomainEventStorage" />.
         /// </returns>
         private DomainEventStorage<IDomainEvent> GetFakeEventStore(IStoreEvents store)
         {
@@ -406,19 +406,19 @@ namespace LifeGame.EventStore.Implementation.Test
         }
 
         /// <summary>
-        /// The get fake event store.
+        ///     The get fake event store.
         /// </summary>
         /// <param name="store">
-        /// The store.
+        ///     The store.
         /// </param>
         /// <param name="streamMock">
-        /// The stream mock.
+        ///     The stream mock.
         /// </param>
         /// <returns>
-        /// The <see cref="DomainEventStorage"/>.
+        ///     The <see cref="DomainEventStorage" />.
         /// </returns>
         private DomainEventStorage<IDomainEvent> GetFakeEventStore(
-            Mock<IStoreEvents> store, 
+            Mock<IStoreEvents> store,
             Mock<IEventStream> streamMock)
         {
             var storeBuilder = new Mock<IEventStoreBuilder>();
@@ -429,20 +429,20 @@ namespace LifeGame.EventStore.Implementation.Test
         #endregion
 
         /// <summary>
-        /// The domain event storage fake.
+        ///     The domain event storage fake.
         /// </summary>
         internal class DomainEventStorageFake : DomainEventStorage<IDomainEvent>
         {
             #region Constructors and Destructors
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="DomainEventStorageFake"/> class.
+            ///     Initializes a new instance of the <see cref="DomainEventStorageFake" /> class.
             /// </summary>
             /// <param name="builder">
-            /// The builder.
+            ///     The builder.
             /// </param>
             /// <param name="mock">
-            /// The mock.
+            ///     The mock.
             /// </param>
             public DomainEventStorageFake(IEventStoreBuilder builder, Mock<IEventStream> mock)
                 : base(builder)
@@ -455,7 +455,7 @@ namespace LifeGame.EventStore.Implementation.Test
             #region Public Properties
 
             /// <summary>
-            /// Gets or sets the stream mock.
+            ///     Gets or sets the stream mock.
             /// </summary>
             public Mock<IEventStream> StreamMock { get; set; }
 
@@ -464,13 +464,13 @@ namespace LifeGame.EventStore.Implementation.Test
             #region Methods
 
             /// <summary>
-            /// The get stream.
+            ///     The get stream.
             /// </summary>
             /// <param name="id">
-            /// The id.
+            ///     The id.
             /// </param>
             /// <returns>
-            /// The <see cref="IEventStream"/>.
+            ///     The <see cref="IEventStream" />.
             /// </returns>
             protected override IEventStream GetStream(Guid id)
             {

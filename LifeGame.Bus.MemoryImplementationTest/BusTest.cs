@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="BusTest.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The bus test.
@@ -23,14 +23,14 @@ namespace LifeGame.Bus.MemoryImplementation.Test
     using Xunit;
 
     /// <summary>
-    /// The bus test.
+    ///     The bus test.
     /// </summary>
     public class BusTest
     {
         #region Public Methods and Operators
 
         /// <summary>
-        /// The bus constructor.
+        ///     The bus constructor.
         /// </summary>
         [Fact]
         public void BusConstructor()
@@ -47,9 +47,9 @@ namespace LifeGame.Bus.MemoryImplementation.Test
         }
 
         /// <summary>
-        /// The commit test.
+        ///     The commit test.
         /// </summary>
-        [Fact]
+        [Fact(Skip = "Don't have implementation")]
         public void CommitTest()
         {
             // arrange 
@@ -57,11 +57,11 @@ namespace LifeGame.Bus.MemoryImplementation.Test
             var sut = new Bus(builder.Object);
 
             // act & assert
-            Assert.Throws<NotSupportedException>(() => sut.Commit());
+            sut.Commit();
         }
 
         /// <summary>
-        /// The multi publish test.
+        ///     The multi publish test.
         /// </summary>
         [Fact]
         public void MultiPublishTest()
@@ -80,7 +80,7 @@ namespace LifeGame.Bus.MemoryImplementation.Test
         }
 
         /// <summary>
-        /// The publish test.
+        ///     The publish test.
         /// </summary>
         [Fact]
         public void PublishTest()
@@ -99,7 +99,7 @@ namespace LifeGame.Bus.MemoryImplementation.Test
         }
 
         /// <summary>
-        /// The rollback test.
+        ///     The rollback test.
         /// </summary>
         [Fact]
         public void RollbackTest()
@@ -117,16 +117,16 @@ namespace LifeGame.Bus.MemoryImplementation.Test
         #region Methods
 
         /// <summary>
-        /// The get bus.
+        ///     The get bus.
         /// </summary>
         /// <param name="builder">
-        /// The builder.
+        ///     The builder.
         /// </param>
         /// <param name="memBus">
-        /// The mem bus.
+        ///     The mem bus.
         /// </param>
         /// <returns>
-        /// The <see cref="Bus"/>.
+        ///     The <see cref="Bus" />.
         /// </returns>
         private static Bus GetBus(Mock<IBusBuilder> builder, Mock<IBus> memBus)
         {

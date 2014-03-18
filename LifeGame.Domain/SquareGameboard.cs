@@ -13,24 +13,24 @@ namespace LifeGame.Domain
     using System.Collections.Generic;
 
     /// <summary>
-    /// The square gameboard.
+    ///     The square gameboard.
     /// </summary>
     public class SquareGameboard : IGameBoardStrategy
     {
         #region Public Methods and Operators
 
         /// <summary>
-        /// The create gameboard.
+        ///     The create gameboard.
         /// </summary>
         /// <param name="numberOfCells">
-        /// The number of cells.
+        ///     The number of cells.
         /// </param>
         /// <returns>
-        /// The <see cref="IList"/>.
+        ///     The <see cref="IList" />.
         /// </returns>
         /// <exception cref="Exception">
         /// </exception>
-        public IList<Cell> CreateGameboard(int numberOfCells)
+        public IEnumerable<Cell> CreateGameboard(int numberOfCells)
         {
             double sqr = Math.Sqrt(numberOfCells);
             if (sqr != Math.Truncate(sqr))
@@ -50,41 +50,43 @@ namespace LifeGame.Domain
         #region Methods
 
         /// <summary>
-        /// The associate neighbors.
+        ///     The associate neighbors.
         /// </summary>
         /// <param name="cells">
-        /// The cells.
+        ///     The cells.
         /// </param>
         /// <param name="height">
-        /// The height.
+        ///     The height.
         /// </param>
         /// <param name="width">
-        /// The width.
+        ///     The width.
         /// </param>
-        private void AssociateCellsWithHisNeighbors(Cell[,] cells, int height, int width)
+        internal void AssociateCellsWithHisNeighbors(Cell[,] cells, int height, int width)
         {
-            for (int i = height - 1; i >= 0; i--)
+            for (int i = width - 1; i >= 0; i--)
             {
-                for (int j = width - 1; j >= 0; j--)
+                for (int j = height - 1; j >= 0; j--)
                 {
+                    var x = i;
+                    var y = j;
+                    
                     // coordinates relative to the cell we are working
-                    int top = i == 0 ? height - 1 : i;
-                    int left = j == 0 ? width - 1 : j;
-                    int bottom = i == height - 1 ? 0 : i;
-                    int right = j == width - 1 ? 0 : j;
-                    int x = i;
-                    int y = j;
-
+                    var top = y + 1 == height ? 0 : y + 1;
+                    var bottom = y - 1 < 0 ? height - 1 : y - 1;
+                    var left = x - 1 < 0 ? width - 1 : x - 1;
+                    var right = x + 1 == width ? 0 : x + 1;
+                    
                     // use compass rose to retrive neighbor
                     Cell cell = cells[x, y];
-                    Cell nw = cells[top, left];
-                    Cell n = cells[top, y];
-                    Cell ne = cells[top, right];
-                    Cell w = cells[x, left];
-                    Cell e = cells[x, right];
-                    Cell sw = cells[bottom, left];
-                    Cell s = cells[bottom, y];
-                    Cell se = cells[bottom, right];
+                    Cell nw = cells[left,top];
+                    Cell n = cells[x, top];
+                    Cell ne = cells[right,top];
+                    Cell w = cells[left, y];
+                    Cell e = cells[right, y];
+                    Cell se = cells[right,bottom];
+                    Cell s = cells[x, bottom];
+                    Cell sw = cells[left, bottom];
+                    
 
                     // add neighbor
                     cell.AddNeighbor(nw);
@@ -100,53 +102,49 @@ namespace LifeGame.Domain
         }
 
         /// <summary>
-        /// The create cells.
+        ///     The create cells.
         /// </summary>
         /// <param name="cells">
-        /// The grid.
+        ///     The grid.
         /// </param>
         /// <param name="height">
-        /// The height.
+        ///     The height.
         /// </param>
         /// <param name="width">
-        /// The width.
+        ///     The width.
         /// </param>
         private void CreateCells(Cell[,] cells, int height, int width)
         {
+            int ids = 0;
             for (int i = height - 1; i >= 0; i--)
             {
                 for (int j = width - 1; j >= 0; j--)
                 {
-                    var cell = new Cell();
+                    var cell = new Cell(new Guid(string.Format("{0:00000000000000000000000000000000}", ids)));
+                    ids++;
                     cells[i, j] = cell;
                 }
             }
         }
 
         /// <summary>
-        /// The to list.
+        ///     The to list.
         /// </summary>
         /// <param name="grid">
-        /// The grid.
+        ///     The grid.
         /// </param>
         /// <param name="side">
-        /// The side.
+        ///     The side.
         /// </param>
-        /// <returns>
-        /// The <see cref="IList"/>.
-        /// </returns>
-        private IList<Cell> ToList(Cell[,] grid, int side)
+        private IEnumerable<Cell> ToList(Cell[,] grid, int side)
         {
-            var list = new List<Cell>();
             for (int i = side - 1; i >= 0; i--)
             {
                 for (int j = side - 1; j >= 0; j--)
                 {
-                    list.Add(grid[i, j]);
+                    yield return grid[i, j];
                 }
             }
-
-            return list;
         }
 
         #endregion

@@ -1,11 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="UniverseTest.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The grid test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace LifeGame.Domain.Test
 {
     using Xunit;
@@ -18,7 +19,7 @@ namespace LifeGame.Domain.Test
         #region Public Methods and Operators
 
         /// <summary>
-        /// The default constructor creates one million of cells.
+        ///     The default constructor creates one million of cells.
         /// </summary>
         [Fact]
         public void DefaultConstructorCreatesOneMillionOfCells()

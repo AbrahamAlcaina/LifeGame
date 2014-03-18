@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="IRegisterChildEntities.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The RegisterChildEntities interface.
@@ -10,7 +10,7 @@
 namespace LifeGame.EventStore
 {
     /// <summary>
-    /// The RegisterChildEntities interface.
+    ///     The RegisterChildEntities interface.
     /// </summary>
     /// <typeparam name="TDomainEvent">
     /// </typeparam>
@@ -20,10 +20,10 @@ namespace LifeGame.EventStore
         #region Public Methods and Operators
 
         /// <summary>
-        /// The register child event provider.
+        ///     The register child event provider.
         /// </summary>
         /// <param name="entityEventProvider">
-        /// The entity event provider.
+        ///     The entity event provider.
         /// </param>
         void RegisterChildEventProvider(IEntityEventProvider<TDomainEvent> entityEventProvider);
 

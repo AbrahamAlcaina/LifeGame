@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="EventStorageNotInitializedException.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The event storage not initialized exception.
@@ -12,9 +12,10 @@ namespace LifeGame.EventStore.Implementation
     using System;
 
     /// <summary>
-    /// The event storage not initialized exception.
+    ///     The event storage not initialized exception.
     /// </summary>
-    internal class EventStorageNotInitializedException : Exception
+    [Serializable]
+    public class EventStorageNotInitializedException : Exception
     {
     }
 }

@@ -45,20 +45,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cell.cs" />
-    <Compile Include="CellStatus.cs" />
+    <Compile Include="Exceptions\CellAlreadyDeadException.cs" />
+    <Compile Include="Exceptions\CellAlreadyLiveException.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Mementos\CellMemento.cs" />
     <Compile Include="Mementos\GameMemento.cs" />
     <Compile Include="IGameBoardStrategy.cs" />
+    <Compile Include="Exceptions\NonExistCellException.cs" />
+    <Compile Include="Exceptions\NonExitCellToSendTheEvent.cs" />
     <Compile Include="SquareGameboard.cs" />
     <Compile Include="Universe.cs" />
-    <Compile Include="Mementos\CellMemento.cs" />
     <Compile Include="Mementos\UniverseMemento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Exceptions\WithOutFutureStatusIsImposibleToEvolveException.cs" />
+    <Compile Include="Utils\ParallelHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LifeGame.Common\LifeGame.Common.csproj">
+      <Project>{9C5E5699-79AC-4DD8-A0E0-436C924024F1}</Project>
+      <Name>LifeGame.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LifeGame.EventStore\LifeGame.EventStore.csproj">
       <Project>{7f1abf3b-2ef9-47e1-b8f3-7b7e5f39abea}</Project>
       <Name>LifeGame.EventStore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeGame.Events\LifeGame.Events.csproj">
+      <Project>{d428a020-5964-4794-968e-d56c6f8439b5}</Project>
+      <Name>LifeGame.Events</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

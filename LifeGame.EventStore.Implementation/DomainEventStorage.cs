@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="DomainEventStorage.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The domain event storage.
@@ -20,7 +20,7 @@ namespace LifeGame.EventStore.Implementation
     using NEventStore;
 
     /// <summary>
-    /// The domain event storage.
+    ///     The domain event storage.
     /// </summary>
     /// <typeparam name="TDomainEvent">
     /// </typeparam>
@@ -30,10 +30,10 @@ namespace LifeGame.EventStore.Implementation
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DomainEventStorage{TDomainEvent}"/> class.
+        ///     Initializes a new instance of the <see cref="DomainEventStorage{TDomainEvent}" /> class.
         /// </summary>
         /// <param name="builder">
-        /// The builder.
+        ///     The builder.
         /// </param>
         public DomainEventStorage(IEventStoreBuilder builder)
         {
@@ -45,12 +45,12 @@ namespace LifeGame.EventStore.Implementation
         #region Properties
 
         /// <summary>
-        /// Gets or sets the event storage.
+        ///     Gets or sets the event storage.
         /// </summary>
         internal IStoreEvents EventStorage { get; set; }
 
         /// <summary>
-        /// Gets or sets the transaction scope.
+        ///     Gets or sets the transaction scope.
         /// </summary>
         internal TransactionScope TransactionScope { get; set; }
 
@@ -59,7 +59,7 @@ namespace LifeGame.EventStore.Implementation
         #region Public Methods and Operators
 
         /// <summary>
-        /// The begin transaction.
+        ///     The begin transaction.
         /// </summary>
         /// <exception cref="AllReadyInTransactionException">
         /// </exception>
@@ -74,7 +74,7 @@ namespace LifeGame.EventStore.Implementation
         }
 
         /// <summary>
-        /// The commit.
+        ///     The commit.
         /// </summary>
         public void Commit()
         {
@@ -84,13 +84,13 @@ namespace LifeGame.EventStore.Implementation
         }
 
         /// <summary>
-        /// The get all events.
+        ///     The get all events.
         /// </summary>
         /// <param name="eventProviderId">
-        /// The event provider id.
+        ///     The event provider id.
         /// </param>
         /// <returns>
-        /// The <see cref="IEnumerable"/>.
+        ///     The <see cref="IEnumerable" />.
         /// </returns>
         public IEnumerable<TDomainEvent> GetAllEvents(Guid eventProviderId)
         {
@@ -107,13 +107,13 @@ namespace LifeGame.EventStore.Implementation
         }
 
         /// <summary>
-        /// The get event count since last snap shot.
+        ///     The get event count since last snap shot.
         /// </summary>
         /// <param name="eventProviderId">
-        /// The event provider id.
+        ///     The event provider id.
         /// </param>
         /// <returns>
-        /// The <see cref="int"/>.
+        ///     The <see cref="int" />.
         /// </returns>
         public int GetEventCountSinceLastSnapShot(Guid eventProviderId)
         {
@@ -125,18 +125,22 @@ namespace LifeGame.EventStore.Implementation
         }
 
         /// <summary>
-        /// The get events since last snap shot.
+        ///     The get events since last snap shot.
         /// </summary>
         /// <param name="eventProviderId">
-        /// The event provider id.
+        ///     The event provider id.
         /// </param>
         /// <returns>
-        /// The <see cref="IEnumerable"/>.
+        ///     The <see cref="IEnumerable" />.
         /// </returns>
         public IEnumerable<TDomainEvent> GetEventsSinceLastSnapShot(Guid eventProviderId)
         {
             Snapshot latestSnapshot = this.EventStorage.Advanced.GetSnapshot(eventProviderId, int.MaxValue);
-            using (IEventStream stream = this.EventStorage.OpenStream(latestSnapshot, int.MaxValue))
+
+            using (
+                IEventStream stream = latestSnapshot == null
+                    ? this.EventStorage.OpenStream(eventProviderId, 0, int.MaxValue)
+                    : this.EventStorage.OpenStream(latestSnapshot, int.MaxValue))
             {
                 foreach (EventMessage committedEvent in stream.CommittedEvents)
                 {
@@ -146,22 +150,24 @@ namespace LifeGame.EventStore.Implementation
         }
 
         /// <summary>
-        /// The get snap shot.
+        ///     The get snap shot.
         /// </summary>
         /// <param name="entityId">
-        /// The entity id.
+        ///     The entity id.
         /// </param>
         /// <returns>
-        /// The <see cref="ISnapShot"/>.
+        ///     The <see cref="ISnapShot" />.
         /// </returns>
         public ISnapShot GetSnapShot(Guid entityId)
         {
             Snapshot nSnapShot = this.EventStorage.Advanced.GetSnapshot(entityId, int.MaxValue);
-            return new SnapShot(nSnapShot.StreamId, nSnapShot.StreamRevision, (IMemento)nSnapShot.Payload);
+            return nSnapShot == null
+                ? null
+                : new SnapShot(nSnapShot.StreamId, nSnapShot.StreamRevision, (IMemento)nSnapShot.Payload);
         }
 
         /// <summary>
-        /// The rollback.
+        ///     The rollback.
         /// </summary>
         public void Rollback()
         {
@@ -170,10 +176,10 @@ namespace LifeGame.EventStore.Implementation
         }
 
         /// <summary>
-        /// The save.
+        ///     The save.
         /// </summary>
         /// <param name="eventProvider">
-        /// The event provider.
+        ///     The event provider.
         /// </param>
         /// <exception cref="ConcurrencyViolationException">
         /// </exception>
@@ -184,6 +190,8 @@ namespace LifeGame.EventStore.Implementation
                 throw new ConcurrencyViolationException();
             }
 
+            eventProvider.UpdateVersion(eventProvider.GetChanges().Count());
+
             using (IEventStream stream = this.GetStream(eventProvider.Id))
             {
                 foreach (TDomainEvent domainEvent in eventProvider.GetChanges())
@@ -193,15 +201,13 @@ namespace LifeGame.EventStore.Implementation
 
                 stream.CommitChanges(Guid.NewGuid());
             }
-
-            eventProvider.UpdateVersion(eventProvider.GetChanges().Count());
         }
 
         /// <summary>
-        /// The save shap shot.
+        ///     The save shap shot.
         /// </summary>
         /// <param name="entity">
-        /// The entity.
+        ///     The entity.
         /// </param>
         public void SaveShapShot(IEventProvider<TDomainEvent> entity)
         {
@@ -215,13 +221,13 @@ namespace LifeGame.EventStore.Implementation
         #region Methods
 
         /// <summary>
-        /// The get stream.
+        ///     The get stream.
         /// </summary>
         /// <param name="id">
-        /// The id.
+        ///     The id.
         /// </param>
         /// <returns>
-        /// The <see cref="IEventStream"/>.
+        ///     The <see cref="IEventStream" />.
         /// </returns>
         /// <exception cref="EventStorageNotInitializedException">
         /// </exception>

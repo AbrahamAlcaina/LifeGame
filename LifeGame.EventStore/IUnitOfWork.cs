@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="IUnitOfWork.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The UnitOfWork interface.
@@ -10,19 +10,19 @@
 namespace LifeGame.EventStore
 {
     /// <summary>
-    /// The UnitOfWork interface.
+    ///     The UnitOfWork interface.
     /// </summary>
     public interface IUnitOfWork
     {
         #region Public Methods and Operators
 
         /// <summary>
-        /// The commit.
+        ///     The commit.
         /// </summary>
         void Commit();
 
         /// <summary>
-        /// The rollback.
+        ///     The rollback.
         /// </summary>
         void Rollback();
 

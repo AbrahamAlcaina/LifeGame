@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="DomainEventTest.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The domain event test.
@@ -14,14 +14,14 @@ namespace LifeGame.Events.Test
     using Xunit;
 
     /// <summary>
-    /// The domain event test.
+    ///     The domain event test.
     /// </summary>
     public class DomainEventTest
     {
         #region Public Methods and Operators
 
         /// <summary>
-        /// The domain event constructor test.
+        ///     The domain event constructor test.
         /// </summary>
         [Fact]
         public void DomainEventConstructorTest()

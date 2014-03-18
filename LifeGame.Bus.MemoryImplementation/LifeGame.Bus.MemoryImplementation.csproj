@@ -66,6 +66,14 @@
       <Project>{b37ece04-9712-4624-8f97-9641b925c83c}</Project>
       <Name>LifeGame.CommandHandlers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LifeGame.EventHandlers\LifeGame.EventHandlers.csproj">
+      <Project>{4C57E3BE-AB6C-4863-9236-A092BF60535B}</Project>
+      <Name>LifeGame.EventHandlers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeGame.EventStore\LifeGame.EventStore.csproj">
+      <Project>{7F1ABF3B-2EF9-47E1-B8F3-7B7E5F39ABEA}</Project>
+      <Name>LifeGame.EventStore</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

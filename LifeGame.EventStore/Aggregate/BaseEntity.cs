@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="BaseEntity.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The base entity.
@@ -14,7 +14,7 @@ namespace LifeGame.EventStore.Aggregate
     using System.Linq;
 
     /// <summary>
-    /// The base entity.
+    ///     The base entity.
     /// </summary>
     /// <typeparam name="TDomainEvent">
     /// </typeparam>
@@ -24,17 +24,17 @@ namespace LifeGame.EventStore.Aggregate
         #region Fields
 
         /// <summary>
-        /// The _applied events.
+        ///     The _applied events.
         /// </summary>
         private readonly List<TDomainEvent> _appliedEvents;
 
         /// <summary>
-        /// The _events.
+        ///     The _events.
         /// </summary>
         private readonly Dictionary<Type, Action<TDomainEvent>> _events;
 
         /// <summary>
-        /// The _version provider.
+        ///     The _version provider.
         /// </summary>
         private Func<int> _versionProvider;
 
@@ -43,7 +43,7 @@ namespace LifeGame.EventStore.Aggregate
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BaseEntity{TDomainEvent}"/> class.
+        ///     Initializes a new instance of the <see cref="BaseEntity{TDomainEvent}" /> class.
         /// </summary>
         public BaseEntity()
         {
@@ -56,19 +56,19 @@ namespace LifeGame.EventStore.Aggregate
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the id.
+        ///     Gets or sets the id.
         /// </summary>
-        public Guid Id { get; protected set; }
+        public Guid Id { get; set; }
 
         #endregion
 
         #region Public Methods and Operators
 
         /// <summary>
-        /// The hook up version provider.
+        ///     The hook up version provider.
         /// </summary>
         /// <param name="versionProvider">
-        /// The version provider.
+        ///     The version provider.
         /// </param>
         public void HookUpVersionProvider(Func<int> versionProvider)
         {
@@ -80,7 +80,7 @@ namespace LifeGame.EventStore.Aggregate
         #region Explicit Interface Methods
 
         /// <summary>
-        /// The clear.
+        ///     The clear.
         /// </summary>
         void IEntityEventProvider<TDomainEvent>.Clear()
         {
@@ -88,10 +88,10 @@ namespace LifeGame.EventStore.Aggregate
         }
 
         /// <summary>
-        /// The get changes.
+        ///     The get changes.
         /// </summary>
         /// <returns>
-        /// The <see cref="IEnumerable"/>.
+        ///     The <see cref="IEnumerable" />.
         /// </returns>
         IEnumerable<TDomainEvent> IEntityEventProvider<TDomainEvent>.GetChanges()
         {
@@ -99,10 +99,10 @@ namespace LifeGame.EventStore.Aggregate
         }
 
         /// <summary>
-        /// The load from history.
+        ///     The load from history.
         /// </summary>
         /// <param name="domainEvents">
-        /// The domain events.
+        ///     The domain events.
         /// </param>
         void IEntityEventProvider<TDomainEvent>.LoadFromHistory(IEnumerable<TDomainEvent> domainEvents)
         {
@@ -122,10 +122,10 @@ namespace LifeGame.EventStore.Aggregate
         #region Methods
 
         /// <summary>
-        /// The apply.
+        ///     The apply.
         /// </summary>
         /// <param name="domainEvent">
-        /// The domain event.
+        ///     The domain event.
         /// </param>
         /// <typeparam name="TEvent">
         /// </typeparam>
@@ -138,10 +138,10 @@ namespace LifeGame.EventStore.Aggregate
         }
 
         /// <summary>
-        /// The register event.
+        ///     The register event.
         /// </summary>
         /// <param name="eventHandler">
-        /// The event handler.
+        ///     The event handler.
         /// </param>
         /// <typeparam name="TEvent">
         /// </typeparam>
@@ -151,13 +151,13 @@ namespace LifeGame.EventStore.Aggregate
         }
 
         /// <summary>
-        /// The apply.
+        ///     The apply.
         /// </summary>
         /// <param name="eventType">
-        /// The event type.
+        ///     The event type.
         /// </param>
         /// <param name="domainEvent">
-        /// The domain event.
+        ///     The domain event.
         /// </param>
         /// <exception cref="UnregisteredDomainEventException">
         /// </exception>
@@ -169,8 +169,8 @@ namespace LifeGame.EventStore.Aggregate
             {
                 throw new UnregisteredDomainEventException(
                     string.Format(
-                        "The requested domain event '{0}' is not registered in '{1}'", 
-                        eventType.FullName, 
+                        "The requested domain event '{0}' is not registered in '{1}'",
+                        eventType.FullName,
                         this.GetType().FullName));
             }
 

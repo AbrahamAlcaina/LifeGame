@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,9 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationBootStrapper.cs" />
     <Compile Include="ApplicationRegistry.cs" />
-    <Compile Include="DomainRegistry.cs" />
     <Compile Include="BusRegistry.cs" />
+    <Compile Include="DomainRegistry.cs" />
     <Compile Include="EventStoreRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,6 +77,14 @@
     <ProjectReference Include="..\LifeGame.CommandHandlers\LifeGame.CommandHandlers.csproj">
       <Project>{b37ece04-9712-4624-8f97-9641b925c83c}</Project>
       <Name>LifeGame.CommandHandlers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeGame.Domain\LifeGame.Domain.csproj">
+      <Project>{0B0F2DAF-83A3-4F2F-9937-283D9C8F17DF}</Project>
+      <Name>LifeGame.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeGame.EventHandlers\LifeGame.EventHandlers.csproj">
+      <Project>{4C57E3BE-AB6C-4863-9236-A092BF60535B}</Project>
+      <Name>LifeGame.EventHandlers</Name>
     </ProjectReference>
     <ProjectReference Include="..\LifeGame.EventStore.Implementation\LifeGame.EventStore.Implementation.csproj">
       <Project>{96F3B0E7-8FD7-49E9-A77C-BBD9581ADB52}</Project>

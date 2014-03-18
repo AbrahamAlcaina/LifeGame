@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 // <copyright file="IEntityEventProvider.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The EntityEventProvider interface.
@@ -13,7 +13,7 @@ namespace LifeGame.EventStore
     using System.Collections.Generic;
 
     /// <summary>
-    /// The EntityEventProvider interface.
+    ///     The EntityEventProvider interface.
     /// </summary>
     /// <typeparam name="TDomainEvent">
     /// </typeparam>
@@ -23,7 +23,7 @@ namespace LifeGame.EventStore
         #region Public Properties
 
         /// <summary>
-        /// Gets the id.
+        ///     Gets the id.
         /// </summary>
         Guid Id { get; }
 
@@ -32,31 +32,31 @@ namespace LifeGame.EventStore
         #region Public Methods and Operators
 
         /// <summary>
-        /// The clear.
+        ///     The clear.
         /// </summary>
         void Clear();
 
         /// <summary>
-        /// The get changes.
+        ///     The get changes.
         /// </summary>
         /// <returns>
-        /// The <see cref="IEnumerable"/>.
+        ///     The <see cref="IEnumerable" />.
         /// </returns>
         IEnumerable<TDomainEvent> GetChanges();
 
         /// <summary>
-        /// The hook up version provider.
+        ///     The hook up version provider.
         /// </summary>
         /// <param name="versionProvider">
-        /// The version provider.
+        ///     The version provider.
         /// </param>
         void HookUpVersionProvider(Func<int> versionProvider);
 
         /// <summary>
-        /// The load from history.
+        ///     The load from history.
         /// </summary>
         /// <param name="domainEvents">
-        /// The domain events.
+        ///     The domain events.
         /// </param>
         void LoadFromHistory(IEnumerable<TDomainEvent> domainEvents);
 

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="App.xaml.cs" company="">
-//   
+// <copyright file="App.xaml.cs" company="Abraham Alcaina">
+//   AAA Code
 // </copyright>
 // <summary>
 //   Interaction logic for App.xaml

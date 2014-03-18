@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="EventStoreIdentityMap.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The event store identity map.
@@ -15,7 +15,7 @@ namespace LifeGame.EventStore.Storage
     using LifeGame.EventStore.Storage.Memento;
 
     /// <summary>
-    /// The event store identity map.
+    ///     The event store identity map.
     /// </summary>
     /// <typeparam name="TDomainEvent">
     /// </typeparam>
@@ -25,7 +25,7 @@ namespace LifeGame.EventStore.Storage
         #region Fields
 
         /// <summary>
-        /// The _identity map.
+        ///     The _identity map.
         /// </summary>
         private readonly Dictionary<Type, Dictionary<Guid, object>> _identityMap;
 
@@ -34,7 +34,7 @@ namespace LifeGame.EventStore.Storage
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventStoreIdentityMap{TDomainEvent}"/> class.
+        ///     Initializes a new instance of the <see cref="EventStoreIdentityMap{TDomainEvent}" /> class.
         /// </summary>
         public EventStoreIdentityMap()
         {
@@ -46,10 +46,10 @@ namespace LifeGame.EventStore.Storage
         #region Public Methods and Operators
 
         /// <summary>
-        /// The add.
+        ///     The add.
         /// </summary>
         /// <param name="aggregateRoot">
-        /// The aggregate root.
+        ///     The aggregate root.
         /// </param>
         /// <typeparam name="TAggregate">
         /// </typeparam>
@@ -72,15 +72,15 @@ namespace LifeGame.EventStore.Storage
         }
 
         /// <summary>
-        /// The get by id.
+        ///     The get by id.
         /// </summary>
         /// <param name="id">
-        /// The id.
+        ///     The id.
         /// </param>
         /// <typeparam name="TAggregate">
         /// </typeparam>
         /// <returns>
-        /// The <see cref="TAggregate"/>.
+        ///     The <see cref="TAggregate" />.
         /// </returns>
         public TAggregate GetById<TAggregate>(Guid id)
             where TAggregate : class, IOrginator, IEventProvider<TDomainEvent>, new()
@@ -101,13 +101,13 @@ namespace LifeGame.EventStore.Storage
         }
 
         /// <summary>
-        /// The remove.
+        ///     The remove.
         /// </summary>
         /// <param name="aggregateRootType">
-        /// The aggregate root type.
+        ///     The aggregate root type.
         /// </param>
         /// <param name="aggregateRootId">
-        /// The aggregate root id.
+        ///     The aggregate root id.
         /// </param>
         public void Remove(Type aggregateRootType, Guid aggregateRootId)
         {

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Bus.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The bus.
@@ -13,17 +13,17 @@ namespace LifeGame.Bus.MemoryImplementation
     using System.Collections.Generic;
 
     /// <summary>
-    /// The bus.
+    ///     The bus.
     /// </summary>
     public class Bus : IBus
     {
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Bus"/> class.
+        ///     Initializes a new instance of the <see cref="Bus" /> class.
         /// </summary>
         /// <param name="busBuilder">
-        /// The bus builder.
+        ///     The bus builder.
         /// </param>
         public Bus(IBusBuilder busBuilder)
         {
@@ -35,7 +35,7 @@ namespace LifeGame.Bus.MemoryImplementation
         #region Properties
 
         /// <summary>
-        /// Gets or sets the memory bus.
+        ///     Gets or sets the memory bus.
         /// </summary>
         internal MemBus.IBus MemoryBus { get; set; }
 
@@ -44,20 +44,20 @@ namespace LifeGame.Bus.MemoryImplementation
         #region Public Methods and Operators
 
         /// <summary>
-        /// The commit.
+        ///     The commit.
         /// </summary>
         /// <exception cref="NotSupportedException">
         /// </exception>
         public void Commit()
         {
-            throw new NotSupportedException();
+            // NOT needed commit because is an in memory bus
         }
 
         /// <summary>
-        /// The publish.
+        ///     The publish.
         /// </summary>
         /// <param name="message">
-        /// The message.
+        ///     The message.
         /// </param>
         public void Publish(object message)
         {
@@ -65,10 +65,10 @@ namespace LifeGame.Bus.MemoryImplementation
         }
 
         /// <summary>
-        /// The publish.
+        ///     The publish.
         /// </summary>
         /// <param name="messages">
-        /// The messages.
+        ///     The messages.
         /// </param>
         public void Publish(IEnumerable<object> messages)
         {
@@ -79,7 +79,7 @@ namespace LifeGame.Bus.MemoryImplementation
         }
 
         /// <summary>
-        /// The rollback.
+        ///     The rollback.
         /// </summary>
         /// <exception cref="NotSupportedException">
         /// </exception>

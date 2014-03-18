@@ -9,34 +9,70 @@
 
 namespace LifeGame.Domain.Mementos
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     using LifeGame.EventStore.Storage.Memento;
 
     /// <summary>
-    /// The cell memento.
+    ///     The cell memento.
     /// </summary>
-    internal class CellMemento : IMemento
+    [Serializable]
+    public class CellMemento : IMemento
     {
         #region Constructors and Destructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CellMemento"/> class.
-        /// </summary>
-        /// <param name="status">
-        /// The status.
-        /// </param>
-        public CellMemento(CellStatus status)
+        public CellMemento()
         {
-            this.Status = status;
+            this.Neighbors = new List<Guid>();
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="CellMemento" /> class.
+        /// </summary>
+        /// <param name="cell">
+        ///     The cell.
+        /// </param>
+        public CellMemento(Cell cell): this()
+        {
+            this.Id = cell.Id;
+            this.Status = cell.Status;
+            this.ChangeReason = cell.ChangedReason;
+            this.FutureStatus = cell.FutureStatus;
+            this.Neighbors = cell.Neighbors.Select(c=> c.Id).ToList();
         }
 
         #endregion
 
-        #region Properties
+        #region Public Properties
 
         /// <summary>
-        /// Gets or sets the status.
+        ///     Gets or sets the future states cause.
         /// </summary>
-        internal CellStatus Status { get; set; }
+        public CellChangeReason ChangeReason { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the future status.
+        /// </summary>
+        public CellStatus? FutureStatus { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the id.
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the status.
+        /// </summary>
+        public CellStatus Status { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the version.
+        /// </summary>
+        public int Version { get; set; }
+
+        public IList<Guid> Neighbors { get; set; }
 
         #endregion
     }

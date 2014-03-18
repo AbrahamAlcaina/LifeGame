@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="IEventStoreUnitOfWork.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The EventStoreUnitOfWork interface.
@@ -14,7 +14,7 @@ namespace LifeGame.EventStore.Storage
     using LifeGame.EventStore.Storage.Memento;
 
     /// <summary>
-    /// The EventStoreUnitOfWork interface.
+    ///     The EventStoreUnitOfWork interface.
     /// </summary>
     /// <typeparam name="TDomainEvent">
     /// </typeparam>
@@ -24,10 +24,10 @@ namespace LifeGame.EventStore.Storage
         #region Public Methods and Operators
 
         /// <summary>
-        /// The add.
+        ///     The add.
         /// </summary>
         /// <param name="aggregateRoot">
-        /// The aggregate root.
+        ///     The aggregate root.
         /// </param>
         /// <typeparam name="TAggregate">
         /// </typeparam>
@@ -35,24 +35,24 @@ namespace LifeGame.EventStore.Storage
             where TAggregate : class, IOrginator, IEventProvider<TDomainEvent>, new();
 
         /// <summary>
-        /// The get by id.
+        ///     The get by id.
         /// </summary>
         /// <param name="id">
-        /// The id.
+        ///     The id.
         /// </param>
         /// <typeparam name="TAggregate">
         /// </typeparam>
         /// <returns>
-        /// The <see cref="TAggregate"/>.
+        ///     The <see cref="TAggregate" />.
         /// </returns>
         TAggregate GetById<TAggregate>(Guid id)
             where TAggregate : class, IOrginator, IEventProvider<TDomainEvent>, new();
 
         /// <summary>
-        /// The register for tracking.
+        ///     The register for tracking.
         /// </summary>
         /// <param name="aggregateRoot">
-        /// The aggregate root.
+        ///     The aggregate root.
         /// </param>
         /// <typeparam name="TAggregate">
         /// </typeparam>

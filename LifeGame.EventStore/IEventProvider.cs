@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="IEventProvider.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The EventProvider interface.
@@ -13,7 +13,7 @@ namespace LifeGame.EventStore
     using System.Collections.Generic;
 
     /// <summary>
-    /// The EventProvider interface.
+    ///     The EventProvider interface.
     /// </summary>
     /// <typeparam name="TDomainEvent">
     /// </typeparam>
@@ -23,12 +23,12 @@ namespace LifeGame.EventStore
         #region Public Properties
 
         /// <summary>
-        /// Gets the id.
+        ///     Gets the id.
         /// </summary>
         Guid Id { get; }
 
         /// <summary>
-        /// Gets the version.
+        ///     Gets the version.
         /// </summary>
         int Version { get; }
 
@@ -37,31 +37,31 @@ namespace LifeGame.EventStore
         #region Public Methods and Operators
 
         /// <summary>
-        /// The clear.
+        ///     The clear.
         /// </summary>
         void Clear();
 
         /// <summary>
-        /// The get changes.
+        ///     The get changes.
         /// </summary>
         /// <returns>
-        /// The <see cref="IEnumerable"/>.
+        ///     The <see cref="IEnumerable" />.
         /// </returns>
         IEnumerable<TDomainEvent> GetChanges();
 
         /// <summary>
-        /// The load from history.
+        ///     The load from history.
         /// </summary>
         /// <param name="domainEvents">
-        /// The domain events.
+        ///     The domain events.
         /// </param>
         void LoadFromHistory(IEnumerable<TDomainEvent> domainEvents);
 
         /// <summary>
-        /// The update version.
+        ///     The update version.
         /// </summary>
         /// <param name="version">
-        /// The version.
+        ///     The version.
         /// </param>
         void UpdateVersion(int version);
 

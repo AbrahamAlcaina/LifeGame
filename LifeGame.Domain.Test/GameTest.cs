@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="GameTest.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The game test.
@@ -17,21 +17,45 @@ namespace LifeGame.Domain.Test
     using Xunit;
 
     /// <summary>
-    /// The game test.
+    ///     The game test.
     /// </summary>
     public class GameTest
     {
+        #region Fields
+
+        /// <summary>
+        ///     The board constructor.
+        /// </summary>
+        private readonly Guid boardConstructor;
+
+        #endregion
+
+        #region Constructors and Destructors
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="GameTest" /> class.
+        /// </summary>
+        /// <param name="boardConstructor1">
+        ///     The board constructor 1.
+        /// </param>
+        public GameTest(Guid boardConstructor1)
+        {
+            this.boardConstructor = this.boardConstructor;
+        }
+
+        #endregion
+
         #region Public Methods and Operators
 
         /// <summary>
-        /// The create memento test.
+        ///     The create memento test.
         /// </summary>
         [Fact]
         public void CreateMementoTest()
         {
             // arrange
             const int NumberOfCells = 100;
-            var sut = new Game(NumberOfCells, new SquareGameboard());
+            var sut = new Game(this.boardConstructor, new SquareGameboard(), NumberOfCells);
 
             // act
             IMemento memento = sut.CreateMemento();
@@ -42,7 +66,7 @@ namespace LifeGame.Domain.Test
         }
 
         /// <summary>
-        /// The set memento test.
+        ///     The set memento test.
         /// </summary>
         [Fact]
         public void SetMementoTest()
@@ -53,8 +77,8 @@ namespace LifeGame.Domain.Test
             const int NumberOfCellsMememto = 100000;
             Guid id = Guid.NewGuid();
 
-            var sut = new Game(NumberOfCells, new SquareGameboard());
-            var memento = new GameMemento(id, Version, NumberOfCellsMememto);
+            var sut = new Game(id, new SquareGameboard(), NumberOfCells);
+            var memento = new GameMemento(sut);
 
             // act
             sut.SetMemento(memento);

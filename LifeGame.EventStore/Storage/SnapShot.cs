@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 // <copyright file="SnapShot.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The snap shot.
@@ -14,7 +14,7 @@ namespace LifeGame.EventStore.Storage
     using LifeGame.EventStore.Storage.Memento;
 
     /// <summary>
-    /// The snap shot.
+    ///     The snap shot.
     /// </summary>
     [Serializable]
     public class SnapShot : ISnapShot
@@ -22,16 +22,16 @@ namespace LifeGame.EventStore.Storage
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SnapShot"/> class.
+        ///     Initializes a new instance of the <see cref="SnapShot" /> class.
         /// </summary>
         /// <param name="eventProviderId">
-        /// The event provider id.
+        ///     The event provider id.
         /// </param>
         /// <param name="version">
-        /// The version.
+        ///     The version.
         /// </param>
         /// <param name="memento">
-        /// The memento.
+        ///     The memento.
         /// </param>
         public SnapShot(Guid eventProviderId, int version, IMemento memento)
         {
@@ -45,17 +45,17 @@ namespace LifeGame.EventStore.Storage
         #region Public Properties
 
         /// <summary>
-        /// Gets the event provider id.
+        ///     Gets the event provider id.
         /// </summary>
         public Guid EventProviderId { get; private set; }
 
         /// <summary>
-        /// Gets the memento.
+        ///     Gets the memento.
         /// </summary>
         public IMemento Memento { get; private set; }
 
         /// <summary>
-        /// Gets the version.
+        ///     Gets the version.
         /// </summary>
         public int Version { get; private set; }
 

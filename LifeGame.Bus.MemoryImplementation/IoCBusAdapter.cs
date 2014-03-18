@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="IoCBusAdapter.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The bus io c adapter.
@@ -17,17 +17,17 @@ namespace LifeGame.Bus.MemoryImplementation
     using SimpleInjector;
 
     /// <summary>
-    /// The bus io c adapter.
+    ///     The bus io c adapter.
     /// </summary>
     internal class BusIoCAdapter : IocAdapter
     {
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BusIoCAdapter"/> class.
+        ///     Initializes a new instance of the <see cref="BusIoCAdapter" /> class.
         /// </summary>
         /// <param name="container">
-        /// The container.
+        ///     The container.
         /// </param>
         public BusIoCAdapter(Container container)
         {
@@ -39,7 +39,7 @@ namespace LifeGame.Bus.MemoryImplementation
         #region Properties
 
         /// <summary>
-        /// Gets or sets the container.
+        ///     Gets or sets the container.
         /// </summary>
         internal Container Container { get; set; }
 
@@ -48,17 +48,18 @@ namespace LifeGame.Bus.MemoryImplementation
         #region Public Methods and Operators
 
         /// <summary>
-        /// The get all instances.
+        ///     The get all instances.
         /// </summary>
         /// <param name="desiredType">
-        /// The desired type.
+        ///     The desired type.
         /// </param>
         /// <returns>
-        /// The <see cref="IEnumerable"/>.
+        ///     The <see cref="IEnumerable" />.
         /// </returns>
         public IEnumerable<object> GetAllInstances(Type desiredType)
         {
-            return this.Container.GetAllInstances(desiredType);
+            IEnumerable<object> t = this.Container.GetAllInstances(desiredType);
+            return t;
         }
 
         #endregion

@@ -1,11 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Program.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The program.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace LifeGame.UI.Console
 {
     using System;
@@ -13,6 +14,7 @@ namespace LifeGame.UI.Console
 
     using LifeGame.Bus;
     using LifeGame.Commands;
+    using LifeGame.Configuration;
 
     using SimpleInjector;
 
@@ -24,7 +26,7 @@ namespace LifeGame.UI.Console
         #region Static Fields
 
         /// <summary>
-        /// The container.
+        ///     The container.
         /// </summary>
         private static Container container;
 
@@ -33,12 +35,12 @@ namespace LifeGame.UI.Console
         #region Public Methods and Operators
 
         /// <summary>
-        /// The get instance.
+        ///     The get instance.
         /// </summary>
         /// <typeparam name="TService">
         /// </typeparam>
         /// <returns>
-        /// The <see cref="TService"/>.
+        ///     The <see cref="TService" />.
         /// </returns>
         [DebuggerStepThrough]
         public static TService GetInstance<TService>() where TService : class
@@ -51,20 +53,25 @@ namespace LifeGame.UI.Console
         #region Methods
 
         /// <summary>
-        /// The main.
+        ///     The main.
         /// </summary>
         /// <param name="args">
-        /// The args.
+        ///     The args.
         /// </param>
         private static void Main(string[] args)
         {
             Console.WriteLine("Start");
             container = ApplicationBootStrapper.BootStrap();
             var bus = GetInstance<IBus>();
-            var startCommand = new CreateGameCommand(Guid.NewGuid(), 1000);
-            bus.Publish(startCommand);
+            Guid gameId = Guid.NewGuid();
 
-            Console.ReadLine();
+            bus.Publish(new CreateGameCommand(Guid.NewGuid(), gameId, 4));
+            bus.Publish(new InitializeGameCommand(Guid.NewGuid(), gameId, 1));
+
+            while (string.IsNullOrEmpty(Console.ReadLine()))
+            {
+                bus.Publish(new EvolveGameCommand(Guid.NewGuid(), gameId));
+            }
         }
 
         #endregion

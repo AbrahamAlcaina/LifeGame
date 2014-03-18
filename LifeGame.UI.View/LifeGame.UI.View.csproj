@@ -33,14 +33,40 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>LifeGame.UI.View.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\150.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MahApps.Metro">
-      <HintPath>..\packages\MahApps.Metro.0.10.1.1\lib\net45\MahApps.Metro.dll</HintPath>
+    <Reference Include="Accessibility" />
+    <Reference Include="Caliburn.Micro, Version=1.5.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\net45\Caliburn.Micro.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=0.0.0.999, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\MahApps.Metro\NET45\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="SimpleInjector">
+      <HintPath>..\packages\SimpleInjector.2.3.5\lib\net40-client\SimpleInjector.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\packages\System.Data.SQLite.1.0.88.0\lib\net45\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>..\packages\System.Data.SQLite.1.0.88.0\lib\net45\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\MahApps.Metro.0.10.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +76,8 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -59,7 +87,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -67,8 +95,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="Handlers\CellLivedEventHandler.cs" />
+    <Compile Include="Handlers\GameCreatedEventHandler.cs" />
+    <Compile Include="Handlers\CellDeadEventHandler.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Exceptions\DependencyInjectorAlreadyInstanciatedException.cs" />
+    <Compile Include="ViewModels\CellViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\RowViewModel.cs" />
+    <Compile Include="ViewModels\UniverseViewModel.cs" />
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Resources\Icons.xaml">
@@ -106,10 +144,56 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Entypo-license.txt" />
+    <Resource Include="Resources\150.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="150.png" />
+    <Resource Include="Resources\glider.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LifeGame.Bus\LifeGame.Bus.csproj">
+      <Project>{C976F6C0-4306-4C11-9940-A28AB4F9A932}</Project>
+      <Name>LifeGame.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeGame.Commands\LifeGame.Commands.csproj">
+      <Project>{CE3A4643-83CE-445C-9B13-1B65225A46E3}</Project>
+      <Name>LifeGame.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeGame.Configuration\LifeGame.Configuration.csproj">
+      <Project>{812CB7BF-3E6F-4986-A5D5-5453ED6936A7}</Project>
+      <Name>LifeGame.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeGame.EventHandlers\LifeGame.EventHandlers.csproj">
+      <Project>{4C57E3BE-AB6C-4863-9236-A092BF60535B}</Project>
+      <Name>LifeGame.EventHandlers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeGame.EventStore.Optimization\LifeGame.EventStore.Optimization.csproj">
+      <Project>{1478E133-BEF7-4206-8412-57B6CC80B850}</Project>
+      <Name>LifeGame.EventStore.Optimization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeGame.EventStore\LifeGame.EventStore.csproj">
+      <Project>{7F1ABF3B-2EF9-47E1-B8F3-7B7E5F39ABEA}</Project>
+      <Name>LifeGame.EventStore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeGame.Events\LifeGame.Events.csproj">
+      <Project>{D428A020-5964-4794-968E-D56C6F8439B5}</Project>
+      <Name>LifeGame.Events</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeGame.UI.Universe\LifeGame.UI.Universe.csproj">
+      <Project>{fea9b443-d1ea-4fe3-82e8-2489072af9b1}</Project>
+      <Name>LifeGame.UI.Universe</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\150.ico" />
+    <Content Include="x64\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

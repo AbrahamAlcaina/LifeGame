@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="EntityList.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The entity list.
@@ -12,7 +12,7 @@ namespace LifeGame.EventStore.Aggregate
     using System.Collections.Generic;
 
     /// <summary>
-    /// The entity list.
+    ///     The entity list.
     /// </summary>
     /// <typeparam name="TEntity">
     /// </typeparam>
@@ -24,7 +24,7 @@ namespace LifeGame.EventStore.Aggregate
         #region Fields
 
         /// <summary>
-        /// The _aggregate root.
+        ///     The _aggregate root.
         /// </summary>
         private readonly IRegisterChildEntities<TDomainEvent> _aggregateRoot;
 
@@ -33,10 +33,10 @@ namespace LifeGame.EventStore.Aggregate
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EntityList{TEntity,TDomainEvent}"/> class.
+        ///     Initializes a new instance of the <see cref="EntityList{TEntity,TDomainEvent}" /> class.
         /// </summary>
         /// <param name="aggregateRoot">
-        /// The aggregate root.
+        ///     The aggregate root.
         /// </param>
         public EntityList(IRegisterChildEntities<TDomainEvent> aggregateRoot)
         {
@@ -44,13 +44,13 @@ namespace LifeGame.EventStore.Aggregate
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EntityList{TEntity,TDomainEvent}"/> class.
+        ///     Initializes a new instance of the <see cref="EntityList{TEntity,TDomainEvent}" /> class.
         /// </summary>
         /// <param name="aggregateRoot">
-        /// The aggregate root.
+        ///     The aggregate root.
         /// </param>
         /// <param name="capacity">
-        /// The capacity.
+        ///     The capacity.
         /// </param>
         public EntityList(IRegisterChildEntities<TDomainEvent> aggregateRoot, int capacity)
             : base(capacity)
@@ -59,13 +59,13 @@ namespace LifeGame.EventStore.Aggregate
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EntityList{TEntity,TDomainEvent}"/> class.
+        ///     Initializes a new instance of the <see cref="EntityList{TEntity,TDomainEvent}" /> class.
         /// </summary>
         /// <param name="aggregateRoot">
-        /// The aggregate root.
+        ///     The aggregate root.
         /// </param>
         /// <param name="collection">
-        /// The collection.
+        ///     The collection.
         /// </param>
         public EntityList(IRegisterChildEntities<TDomainEvent> aggregateRoot, IEnumerable<TEntity> collection)
             : base(collection)
@@ -78,10 +78,10 @@ namespace LifeGame.EventStore.Aggregate
         #region Public Methods and Operators
 
         /// <summary>
-        /// The add.
+        ///     The add.
         /// </summary>
         /// <param name="entity">
-        /// The entity.
+        ///     The entity.
         /// </param>
         public new void Add(TEntity entity)
         {

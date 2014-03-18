@@ -1,11 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ApplicationRegistry.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The application registry.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace LifeGame.Configuration
 {
     using LifeGame.EventStore;
@@ -22,12 +23,12 @@ namespace LifeGame.Configuration
         #region Public Methods and Operators
 
         /// <summary>
-        /// The application boostrap.
+        ///     The application boostrap.
         /// </summary>
         /// <param name="container">
         /// </param>
         /// <returns>
-        /// The <see cref="ApplicationRegistry"/>.
+        ///     The <see cref="ApplicationRegistry" />.
         /// </returns>
         public static ApplicationRegistry ApplicationBoostrap(Container container)
         {
@@ -35,20 +36,19 @@ namespace LifeGame.Configuration
         }
 
         /// <summary>
-        /// The registry.
+        ///     The registry.
         /// </summary>
         /// <param name="container">
-        /// The container.
+        ///     The container.
         /// </param>
         /// <returns>
-        /// The <see cref="ApplicationRegistry"/>.
+        ///     The <see cref="ApplicationRegistry" />.
         /// </returns>
         public ApplicationRegistry Registry(Container container)
         {
             container.Register<IDomainEventStorage<IDomainEvent>, DomainEventStorage<IDomainEvent>>();
             container.Register<IIdentityMap<IDomainEvent>, EventStoreIdentityMap<IDomainEvent>>();
             container.Register<IEventStoreUnitOfWork<IDomainEvent>, EventStoreUnitOfWork<IDomainEvent>>();
-            container.Register<IDomainRepository<IDomainEvent>, DomainRepository<IDomainEvent>>();
             return this;
         }
 

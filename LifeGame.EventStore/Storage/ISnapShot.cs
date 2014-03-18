@@ -1,6 +1,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ISnapShot.cs" company="Abraham Alcaina">
-//   
+//   AAA Code
 // </copyright>
 // <summary>
 //   The SnapShot interface.
@@ -14,24 +14,24 @@ namespace LifeGame.EventStore.Storage
     using LifeGame.EventStore.Storage.Memento;
 
     /// <summary>
-    /// The SnapShot interface.
+    ///     The SnapShot interface.
     /// </summary>
     public interface ISnapShot
     {
         #region Public Properties
 
         /// <summary>
-        /// Gets the event provider id.
+        ///     Gets the event provider id.
         /// </summary>
         Guid EventProviderId { get; }
 
         /// <summary>
-        /// Gets the memento.
+        ///     Gets the memento.
         /// </summary>
         IMemento Memento { get; }
 
         /// <summary>
-        /// Gets the version.
+        ///     Gets the version.
         /// </summary>
         int Version { get; }
 

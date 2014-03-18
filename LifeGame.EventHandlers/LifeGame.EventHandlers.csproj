@@ -39,7 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IEventHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LifeGame.EventStore\LifeGame.EventStore.csproj">
+      <Project>{7F1ABF3B-2EF9-47E1-B8F3-7B7E5F39ABEA}</Project>
+      <Name>LifeGame.EventStore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LifeGame.Events\LifeGame.Events.csproj">
+      <Project>{D428A020-5964-4794-968E-D56C6F8439B5}</Project>
+      <Name>LifeGame.Events</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
